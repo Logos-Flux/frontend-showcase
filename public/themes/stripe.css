@@ -1,0 +1,104 @@
+/* ============================================
+   Stripe Theme — Premium Fintech Type Foundry
+   White canvas with deep navy headings (#061b31) and Stripe Purple
+   (#533afd) as the brand voltage. sohne-var ss01 stylistic set —
+   weight 300 light display headlines, an anti-convention move that
+   reads as confident rather than shouting. Multi-layer blue-tinted
+   shadows rgba(50,50,93,0.25) tie elevation to the brand palette.
+   Inspired by stripe.com — see public/design-md/stripe.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #f6f9fc;
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #ebeef5;
+
+  --color-t-text: #64748d;
+  --color-t-bright: #061b31;      /* deep navy headings */
+  --color-t-muted: #8898aa;
+
+  --color-t-accent: #533afd;      /* stripe purple */
+  --color-t-accent-alt: #ea2261;  /* ruby */
+  --color-t-accent-glow: rgba(83, 58, 253, 0.14);
+  --color-t-accent-alt-glow: rgba(234, 34, 97, 0.12);
+
+  --color-t-info: #533afd;
+  --color-t-success: #15be53;
+  --color-t-warning: #9b6829;     /* lemon */
+  --color-t-error: #ea2261;
+
+  --color-t-border: #e3e8ee;
+  --color-t-border-active: #533afd;
+
+  /* sohne-var is proprietary; Inter is the closest open match. */
+  --font-primary: 'sohne-var', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'sohne-var', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Source Code Pro', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'Source Code Pro', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-feature-settings: "ss01", "tnum";        /* ss01 stylistic set + tabular nums */
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display: weight 300 + extreme negative tracking — Stripe's whispered authority */
+h1, .font-display { font-weight: 300; letter-spacing: -0.028em; line-height: 1.05; color: var(--color-t-bright); }
+h2 { font-weight: 300; letter-spacing: -0.02em; color: var(--color-t-bright); }
+h3 { font-weight: 500; color: var(--color-t-bright); }
+
+/* Cards: white, conservative 6px rounding, blue-tinted multi-layer shadow */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 6px;
+  box-shadow:
+    rgba(50, 50, 93, 0.08) 0 1px 2px,
+    rgba(0, 0, 0, 0.04) 0 1px 1px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  /* The signature Stripe shadow: blue-tinted twilight depth */
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0 13px 27px -5px,
+    rgba(0, 0, 0, 0.10) 0 8px 16px -8px;
+  transform: translateY(-2px);
+}
+
+.t-glow { box-shadow: 0 0 0 4px var(--color-t-accent-glow); }
+
+/* Subtle blue-purple wash — the brand's twilight atmosphere */
+.t-bg-pattern {
+  background-image: radial-gradient(ellipse at 20% 0%, rgba(83, 58, 253, 0.04) 0%, transparent 50%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(21, 190, 83, 0.40); animation: status-blink 1.6s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: rgba(50, 50, 93, 0.18); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

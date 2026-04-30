@@ -1,0 +1,96 @@
+/* ============================================
+   Supabase Theme — PostgreSQL Green in the Dark
+   Dark-mode-native canvas (#171717) with emerald (#3ecf8e) green
+   used sparingly as the "this is Supabase" identity marker. HSL-
+   based depth — borders and surfaces blend through transparency
+   rather than flat hex layers. Pill primary buttons (9999px)
+   contrast with 6px secondary — clear hierarchy.
+   Inspired by supabase.com — see public/design-md/supabase.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #171717;
+  --color-t-surface: #1c1c1c;
+  --color-t-card: #1c1c1c;
+  --color-t-hover: #242424;
+
+  --color-t-text: #b4b4b4;
+  --color-t-bright: #fafafa;
+  --color-t-muted: #898989;
+
+  --color-t-accent: #3ecf8e;      /* supabase green */
+  --color-t-accent-alt: #00c573;  /* green link */
+  --color-t-accent-glow: rgba(62, 207, 142, 0.18);
+  --color-t-accent-alt-glow: rgba(0, 197, 115, 0.14);
+
+  --color-t-info: #3b82f6;
+  --color-t-success: #3ecf8e;
+  --color-t-warning: #f5a524;
+  --color-t-error: #ea2261;
+
+  --color-t-border: #2e2e2e;
+  --color-t-border-active: rgba(62, 207, 142, 0.55);
+
+  /* Circular is proprietary; Inter is the closest open match. */
+  --font-primary: 'Circular', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Circular', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Source Code Pro', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'Source Code Pro', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); text-transform: uppercase; letter-spacing: 0.10em; }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 600; letter-spacing: -0.025em; line-height: 1.0; color: var(--color-t-bright); }
+h2 { font-weight: 600; letter-spacing: -0.018em; color: var(--color-t-bright); }
+
+/* Cards: secondary-button geometry — 6px rounded — depth via border tone shifts */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 6px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-border-active);
+  background: var(--color-t-hover);
+}
+
+.t-glow { box-shadow: 0 0 0 1px var(--color-t-accent), 0 0 24px var(--color-t-accent-glow); }
+
+/* Subtle emerald wash — the brand identity at low intensity */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(62, 207, 142, 0.06) 0%, transparent 45%),
+    radial-gradient(ellipse at 80% 100%, rgba(62, 207, 142, 0.04) 0%, transparent 45%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-accent); box-shadow: 0 0 8px var(--color-t-accent-glow); animation: status-blink 1.5s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-t-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

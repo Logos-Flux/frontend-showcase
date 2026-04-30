@@ -1,0 +1,167 @@
+/* ============================================
+   Airtable Theme — Editorial Workflow
+   White canvas with near-black ink, modest type weights, and brand
+   voltage delivered through full-bleed signature cards in coral,
+   forest, peach, and dark navy. Primary CTAs are near-black pills.
+   Inspired by airtable.com — see public/design-md/airtable.md
+   ============================================ */
+
+:root {
+  /* Backgrounds — white canvas, soft step-ups */
+  --color-t-deep: #f8fafc;       /* surface-soft — page floor */
+  --color-t-surface: #ffffff;    /* canvas */
+  --color-t-card: #ffffff;       /* canvas — cards float on the deep tone */
+  --color-t-hover: #e0e2e6;      /* surface-strong */
+
+  /* Text — near-black ink */
+  --color-t-text: #333840;       /* body */
+  --color-t-bright: #181d26;     /* ink — the "primary" of this system */
+  --color-t-muted: #41454d;      /* muted */
+
+  /* Accents — signature coral primary, forest as the secondary stamp */
+  --color-t-accent: #aa2d00;          /* signature-coral */
+  --color-t-accent-alt: #0a2e0e;      /* signature-forest */
+  --color-t-accent-glow: rgba(170, 45, 0, 0.10);
+  --color-t-accent-alt-glow: rgba(10, 46, 14, 0.10);
+
+  /* Semantic */
+  --color-t-info: #1b61c9;       /* link */
+  --color-t-success: #006400;
+  --color-t-warning: #d9a441;    /* signature-mustard */
+  --color-t-error: #aa2d00;      /* coral doubles as error */
+
+  /* Borders — hairline tone + dark ink for active */
+  --color-t-border: #dddddd;     /* hairline */
+  --color-t-border-active: #181d26; /* ink — focus flips border to ink */
+
+  /* Font families
+     Airtable ships Haas Grotesk (proprietary). Inter is the closest
+     open-licensed substitute and is bundled. */
+  --font-primary: 'Haas Grotesk', 'Haas', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Haas Groot Disp', 'Haas', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal {
+  font-family: var(--font-terminal);
+}
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Card: white, sharp 8px rounding, hairline border --- */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 8px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-bright);
+  box-shadow: 0 4px 16px rgba(24, 29, 38, 0.06);
+}
+
+/* --- Glow: ink ring (Airtable's focus is dark, never colored) --- */
+.t-glow {
+  box-shadow: 0 0 0 2px var(--color-t-bright);
+}
+
+/* --- Background pattern: signature stripes
+     Airtable's signature cards stamp the page with bold colors. We render
+     a quiet hint of that vocabulary as diagonal cream + mint stripes at low
+     opacity so the empty surface reads as part of the system. */
+.t-bg-pattern {
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0,
+      transparent 28px,
+      rgba(245, 233, 212, 0.45) 28px,
+      rgba(245, 233, 212, 0.45) 30px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0,
+      transparent 60px,
+      rgba(168, 216, 196, 0.18) 60px,
+      rgba(168, 216, 196, 0.18) 61px
+    );
+}
+
+/* --- Skeleton Shimmer --- */
+.t-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-t-hover) 0%,
+    var(--color-t-card) 40%,
+    var(--color-t-hover) 80%
+  );
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes t-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- Status dots --- */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.live {
+  background: var(--color-t-success);
+  box-shadow: 0 0 6px rgba(0, 100, 0, 0.35);
+  animation: status-blink 1.8s ease-in-out infinite;
+}
+
+.status-dot.idle {
+  background: var(--color-t-warning);
+}
+
+.status-dot.error {
+  background: var(--color-t-error);
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-t-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9297a0;        /* border-strong */
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-t-bright);
+}

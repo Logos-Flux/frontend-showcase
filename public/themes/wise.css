@@ -1,0 +1,103 @@
+/* ============================================
+   Wise Theme — Lime Fintech Confidence
+   Warm off-white canvas with Wise Green (#9fe870) — fresh, lime-
+   bright, optimistic — replacing the corporate-banking blue.
+   Wise Sans (Inter substitute) at weight 900 with 0.85 line-height
+   creates billboard-scale headlines that read like protest signs.
+   Inspired by wise.com — see public/design-md/wise.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #f8f8f5;
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #e2f6d5;       /* light mint */
+
+  --color-t-text: #454745;        /* warm dark */
+  --color-t-bright: #0e0f0c;      /* near black with green undertone */
+  --color-t-muted: #868685;
+
+  /* Lime green primary, dark-green text-on-green */
+  --color-t-accent: #9fe870;      /* wise green */
+  --color-t-accent-alt: #163300;  /* dark green */
+  --color-t-accent-glow: rgba(159, 232, 112, 0.30);
+  --color-t-accent-alt-glow: rgba(22, 51, 0, 0.10);
+
+  --color-t-info: #38c8ff;
+  --color-t-success: #054d28;     /* positive */
+  --color-t-warning: #ffd11a;
+  --color-t-error: #d03238;
+
+  --color-t-border: rgba(14, 15, 12, 0.12);
+  --color-t-border-active: #163300;
+
+  /* Wise Sans is proprietary; Inter is the closest open match (and the
+     stated fallback). Inter as body too — Wise uses it at weight 600. */
+  --font-primary: 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-display: 'Wise Sans', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-feature-settings: "calt";        /* contextual alternates everywhere */
+  font-size: 16px;
+  font-weight: 600;        /* Wise body default — confident, not light */
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display: weight 900 + 0.85 line-height — billboard density */
+h1, .font-display { font-weight: 900; line-height: 0.85; letter-spacing: -0.025em; color: var(--color-t-bright); }
+h2 { font-weight: 900; line-height: 0.95; letter-spacing: -0.018em; color: var(--color-t-bright); }
+
+/* Cards: very generous 30px rounding — Wise's lifestyle-product feel */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 30px;
+  /* Ring shadow only — Wise's minimal elevation */
+  box-shadow: rgba(14, 15, 12, 0.04) 0 0 0 1px;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  box-shadow: rgba(14, 15, 12, 0.10) 0 8px 24px;
+  transform: scale(1.01);    /* the brand's scale hover */
+}
+
+.t-glow { box-shadow: 0 0 0 3px var(--color-t-accent-glow); }
+
+/* Lime + mint wash — the brand's nature-fintech atmosphere */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(159, 232, 112, 0.16) 0%, transparent 45%),
+    radial-gradient(ellipse at 80% 100%, rgba(226, 246, 213, 0.6) 0%, transparent 45%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-accent); box-shadow: 0 0 8px var(--color-t-accent-glow); animation: status-blink 1.6s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: rgba(14, 15, 12, 0.18); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

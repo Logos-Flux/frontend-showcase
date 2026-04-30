@@ -1,0 +1,97 @@
+/* ============================================
+   Renault Theme — French Showroom Energy
+   White and black structural binary punctuated by Renault Yellow
+   (#EFDF00) for super-primary CTAs. NouvelR proprietary geometric
+   sans (Inter substitute) at bold 700. Zero border-radius — sharp
+   rectangles expressing precision engineering. Aurora gradient
+   wash hints at the brand's chromatic hero.
+   Inspired by renault.com — see public/design-md/renault.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #f2f2f2;        /* pale silver */
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #d9d9d6;       /* warm gray */
+
+  --color-t-text: #222222;        /* charcoal */
+  --color-t-bright: #000000;
+  --color-t-muted: #666666;
+
+  /* Yellow super-primary, Renault Blue as the link/hover accent */
+  --color-t-accent: #EFDF00;
+  --color-t-accent-alt: #1883FD;
+  --color-t-accent-glow: rgba(239, 223, 0, 0.20);
+  --color-t-accent-alt-glow: rgba(24, 131, 253, 0.14);
+
+  --color-t-info: #337AB7;
+  --color-t-success: #8DC572;
+  --color-t-warning: #F0AD4E;
+  --color-t-error: #BE6464;
+
+  --color-t-border: #D1D1D1;
+  --color-t-border-active: #000000;
+
+  --font-primary: 'NouvelR', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'NouvelR', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 700; line-height: 0.95; letter-spacing: -0.02em; color: var(--color-t-bright); }
+h2 { font-weight: 700; line-height: 1.05; color: var(--color-t-bright); }
+
+/* Cards: white, sharp 0px corners — engineered geometry */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 0;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-bright);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.t-glow { box-shadow: 0 0 0 3px var(--color-t-accent); }
+
+/* Aurora gradient wash — magenta + violet + teal — Renault's hero signature at low intensity */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 18% 18%, rgba(216, 50, 184, 0.05) 0%, transparent 35%),
+    radial-gradient(ellipse at 78% 22%, rgba(139, 78, 237, 0.05) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 90%, rgba(34, 178, 198, 0.04) 0%, transparent 45%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 0; display: inline-block; }     /* square — engineered */
+.status-dot.live { background: var(--color-t-accent); box-shadow: 0 0 6px var(--color-t-accent-glow); animation: status-blink 1.4s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #b8b8b8; border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

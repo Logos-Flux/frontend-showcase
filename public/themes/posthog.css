@@ -1,0 +1,98 @@
+/* ============================================
+   PostHog Theme — Sage Garden Shed
+   Warm sage-tinted parchment canvas (#fdfdf8) with olive ink text and
+   PostHog Orange (#F54E00) hidden — appearing only on hover. Sage-
+   tinted borders and surfaces tie the palette together. Anti-corporate
+   warmth: developer analytics designed inside a cozy garden shed.
+   Inspired by posthog.com — see public/design-md/posthog.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #fdfdf8;        /* warm parchment */
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #eeefe9;       /* sage cream */
+
+  --color-t-text: #4d4f46;        /* olive ink — not gray */
+  --color-t-bright: #23251d;      /* deep olive */
+  --color-t-muted: #65675e;       /* muted olive */
+
+  /* Dark CTA is the primary — orange is the hidden hover accent */
+  --color-t-accent: #1e1f23;
+  --color-t-accent-alt: #F54E00;  /* the hidden brand orange */
+  --color-t-accent-glow: rgba(30, 31, 35, 0.10);
+  --color-t-accent-alt-glow: rgba(245, 78, 0, 0.16);
+
+  --color-t-info: #3b82f6;
+  --color-t-success: #2a9d99;
+  --color-t-warning: #F7A501;
+  --color-t-error: #c41c1c;
+
+  --color-t-border: #bfc1b7;      /* sage border — the unifier */
+  --color-t-border-active: #1e1f23;
+
+  /* IBM Plex Sans is open-licensed and bundled. */
+  --font-primary: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 800; line-height: 1.1; color: var(--color-t-bright); }
+h2 { font-weight: 700; line-height: 1.2; color: var(--color-t-bright); }
+
+/* Cards: white over sage parchment, 6px corners */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 6px;
+  transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  /* The signature hover surprise — orange punctuation */
+  border-color: var(--color-t-accent-alt);
+  color: var(--color-t-accent-alt);
+  box-shadow: 0 4px 16px rgba(245, 78, 0, 0.10);
+}
+
+.t-glow { box-shadow: 0 0 0 3px var(--color-t-accent-alt-glow); }
+
+/* Sage parchment grain + orange hint at the corners */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 30% 30%, rgba(238, 239, 233, 0.6) 0%, transparent 60%),
+    radial-gradient(circle at 95% 5%, rgba(245, 78, 0, 0.04) 0%, transparent 12%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(42, 157, 153, 0.40); animation: status-blink 1.6s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #b6b7af; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent-alt); }

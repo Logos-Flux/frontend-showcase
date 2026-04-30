@@ -1,0 +1,96 @@
+/* ============================================
+   Ollama Theme — Pure Grayscale Restraint
+   Pure white canvas with absolutely zero chromatic color. The entire
+   palette is grayscale between #000000 and #ffffff. SF Pro Rounded
+   creates a distinctively soft type voice; pill-shaped (9999px)
+   geometry on every interactive element. Zero shadows — depth comes
+   from background-color shifts and borders alone.
+   Inspired by ollama.com — see public/design-md/ollama.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #ffffff;
+  --color-t-surface: #fafafa;
+  --color-t-card: #ffffff;
+  --color-t-hover: #f5f5f5;
+
+  --color-t-text: #525252;
+  --color-t-bright: #000000;
+  --color-t-muted: #737373;       /* stone */
+
+  /* All-grayscale: no chromatic accent. Black IS the brand. */
+  --color-t-accent: #000000;
+  --color-t-accent-alt: #404040;
+  --color-t-accent-glow: rgba(0, 0, 0, 0.10);
+  --color-t-accent-alt-glow: rgba(64, 64, 64, 0.08);
+
+  /* Ring blue is the only non-gray — and it's reserved for keyboard focus */
+  --color-t-info: #3b82f6;
+  --color-t-success: #525252;
+  --color-t-warning: #525252;
+  --color-t-error: #525252;
+
+  --color-t-border: #e5e5e5;
+  --color-t-border-active: #000000;
+
+  /* SF Pro Rounded carries the signature soft voice on Apple platforms */
+  --font-primary: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, sans-serif;
+  --font-display: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'SF Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; color: var(--color-t-bright); }
+h2 { font-weight: 600; letter-spacing: -0.015em; color: var(--color-t-bright); }
+
+/* Cards: soft 12px rounding, NO shadow — depth from border alone */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 12px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.t-card:hover {
+  background: var(--color-t-hover);
+  border-color: var(--color-t-bright);
+}
+
+/* Even the focus glow is grayscale */
+.t-glow { box-shadow: 0 0 0 4px var(--color-t-accent-glow); }
+
+/* Absolutely no decoration — Ollama's "absence of design IS the design" */
+.t-bg-pattern { background-image: none; }
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.6s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+/* Live state stays grayscale — no green. Brand discipline. */
+.status-dot.live { background: var(--color-t-bright); animation: status-blink 1.8s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-text); }
+.status-dot.error { background: var(--color-t-text); border: 2px solid var(--color-t-bright); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #d4d4d4; border-radius: 9999px; }     /* pills everywhere */
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

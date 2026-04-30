@@ -1,0 +1,106 @@
+/* ============================================
+   Sentry Theme — Late-Night Debugging
+   Deep purple-black backgrounds (#1f1633, #150f23) — never pure
+   black. Warm purple accent spectrum from deep #362d59 through mid
+   #79628c to vibrant #422082, punctuated by lime-green (#c2ef4e)
+   for high-visibility CTAs and pink/coral focus states. Inset-shadow
+   buttons feel pressed into the surface.
+   Inspired by sentry.io — see public/design-md/sentry.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #1f1633;        /* deep purple */
+  --color-t-surface: #150f23;     /* darker purple */
+  --color-t-card: #2a1f44;
+  --color-t-hover: #362d59;       /* border purple as hover surface */
+
+  --color-t-text: #cfcfdb;
+  --color-t-bright: #ffffff;
+  --color-t-muted: #79628c;       /* muted purple */
+
+  /* Lime green primary CTA + Sentry purple interactive */
+  --color-t-accent: #c2ef4e;
+  --color-t-accent-alt: #6a5fc1;  /* sentry purple */
+  --color-t-accent-glow: rgba(194, 239, 78, 0.20);
+  --color-t-accent-alt-glow: rgba(106, 95, 193, 0.22);
+
+  --color-t-info: #6a5fc1;
+  --color-t-success: #c2ef4e;
+  --color-t-warning: #ffb287;     /* coral focus */
+  --color-t-error: #fa7faa;       /* pink */
+
+  --color-t-border: #362d59;      /* border purple */
+  --color-t-border-active: #c2ef4e;
+
+  /* Dammit Sans + Rubik are the brand pair; Inter is the closest open
+     match for both — Rubik is also open-licensed if available. */
+  --font-primary: 'Rubik', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Dammit Sans', 'Rubik', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Monaco', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'Monaco', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); text-transform: uppercase; letter-spacing: 0.08em; }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 700; line-height: 1.05; letter-spacing: -0.015em; color: var(--color-t-bright); }
+h2 { font-weight: 700; line-height: 1.15; color: var(--color-t-bright); }
+
+/* Cards: muted-purple fill with the signature inset shadow — pressed into the surface */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 0 0 1px var(--color-t-accent),
+    0 8px 24px rgba(22, 15, 36, 0.50);
+}
+
+.t-glow {
+  box-shadow:
+    0 0 0 1px var(--color-t-accent),
+    0 0 18px var(--color-t-accent-glow);
+}
+
+/* Warm purple ambient glow + lime accent */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(106, 95, 193, 0.10) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 90%, rgba(194, 239, 78, 0.06) 0%, transparent 35%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-accent); box-shadow: 0 0 8px var(--color-t-accent-glow); animation: status-blink 1.5s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-t-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

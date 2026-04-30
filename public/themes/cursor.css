@@ -1,0 +1,108 @@
+/* ============================================
+   Cursor Theme — Warm Code Editor
+   Warm off-white canvas (#f2f1ed) with deep warm-brown ink (#26251e),
+   accent orange (#f54e00) for brand highlights, and a three-font
+   identity: gothic sans for display, serif for editorial body, mono
+   for code. Borders use oklab color space for perceptually uniform
+   warm-brown edges; pill-shaped tags at extreme radius.
+   Inspired by cursor.com — see public/design-md/cursor.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #f2f1ed;       /* cursor cream */
+  --color-t-surface: #ebeae5;    /* surface 300 */
+  --color-t-card: #e6e5e0;       /* surface 400 — cards sit just above the floor */
+  --color-t-hover: #e1e0db;      /* surface 500 */
+
+  --color-t-text: rgba(38, 37, 30, 0.78);   /* warm brown at ~78% */
+  --color-t-bright: #26251e;     /* warm near-black */
+  --color-t-muted: rgba(38, 37, 30, 0.55);
+
+  /* Orange primary, gold as the secondary highlight */
+  --color-t-accent: #f54e00;
+  --color-t-accent-alt: #c08532;     /* gold */
+  --color-t-accent-glow: rgba(245, 78, 0, 0.12);
+  --color-t-accent-alt-glow: rgba(192, 133, 50, 0.10);
+
+  --color-t-info: #9fbbe0;       /* read blue */
+  --color-t-success: #1f8a65;
+  --color-t-warning: #c08532;
+  --color-t-error: #cf2d56;      /* warm crimson — the signature hover-shift color */
+
+  /* oklab borders fall back to rgba for browsers that don't support oklab() */
+  --color-t-border: rgba(38, 37, 30, 0.10);
+  --color-t-border-active: rgba(38, 37, 30, 0.55);
+
+  /* CursorGothic / jjannon / berkeleyMono are proprietary. We substitute with
+     Inter (gothic), Cormorant Garamond (literary serif), JetBrains Mono. */
+  --font-primary: 'CursorGothic', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'CursorGothic', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'berkeleyMono', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'berkeleyMono', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display headings get aggressive negative tracking — Cursor's signature */
+h1, .font-display { letter-spacing: -0.04em; }
+
+/* Cards: warm surface, 8px rounding, oklab-feel border */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: rgba(38, 37, 30, 0.22);
+  box-shadow:
+    rgba(0, 0, 0, 0.02) 0 0 16px,
+    rgba(0, 0, 0, 0.10) 0 4px 12px;
+}
+
+.t-glow {
+  box-shadow:
+    rgba(0, 0, 0, 0.14) 0 28px 70px,
+    rgba(0, 0, 0, 0.10) 0 14px 32px,
+    rgba(38, 37, 30, 0.10) 0 0 0 1px;
+}
+
+/* Warm cream wash + subtle peach underpainting */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 20% 25%, rgba(245, 78, 0, 0.025) 0%, transparent 45%),
+    radial-gradient(ellipse at 80% 75%, rgba(192, 133, 50, 0.025) 0%, transparent 45%);
+  background-size: 100% 100%;
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.6s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(31, 138, 101, 0.30); animation: status-blink 1.8s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: rgba(38, 37, 30, 0.18); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

@@ -1,0 +1,94 @@
+/* ============================================
+   Warp Theme — Campfire in a Forest
+   Warm dark canvas — earthy near-black with warm gray undertones.
+   Warm Parchment (#faf9f6) text instead of pure white. Almost
+   monochromatic — no bold accent colors. A terminal company that
+   markets like a lifestyle brand.
+   Inspired by warp.dev — see public/design-md/warp.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #18171a;        /* warm void */
+  --color-t-surface: #1f1d20;
+  --color-t-card: #353534;        /* earth gray */
+  --color-t-hover: #454545;
+
+  --color-t-text: #afaeac;        /* ash gray */
+  --color-t-bright: #faf9f6;      /* warm parchment */
+  --color-t-muted: #868584;       /* stone gray */
+
+  /* Almost monochromatic — Warp's restraint is the brand */
+  --color-t-accent: #faf9f6;
+  --color-t-accent-alt: #666469;  /* purple-tint gray */
+  --color-t-accent-glow: rgba(250, 249, 246, 0.08);
+  --color-t-accent-alt-glow: rgba(102, 100, 105, 0.16);
+
+  --color-t-info: #afaeac;
+  --color-t-success: #afaeac;
+  --color-t-warning: #c08532;
+  --color-t-error: #c64545;
+
+  --color-t-border: rgba(227, 227, 227, 0.12);
+  --color-t-border-active: var(--color-t-bright);
+
+  /* Matter is proprietary; Inter is the closest open match. */
+  --font-primary: 'Matter', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Matter', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); text-transform: uppercase; letter-spacing: 0.16em; }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 400; letter-spacing: -0.02em; line-height: 1.05; color: var(--color-t-bright); }
+h2 { font-weight: 400; letter-spacing: -0.015em; color: var(--color-t-bright); }
+
+/* Cards: earth-gray fill with semi-transparent border, generous 14px rounding */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 14px;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.t-card:hover {
+  border-color: rgba(250, 249, 246, 0.30);
+  transform: translateY(-1px);
+}
+
+.t-glow { box-shadow: 0 0 0 2px rgba(250, 249, 246, 0.12); }
+
+/* Subtle warm radial — nature photography atmosphere without literal color */
+.t-bg-pattern {
+  background-image: radial-gradient(ellipse at 30% 30%, rgba(250, 249, 246, 0.025) 0%, transparent 55%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.6s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-bright); animation: status-blink 1.8s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-t-border); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

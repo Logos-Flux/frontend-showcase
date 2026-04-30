@@ -1,0 +1,157 @@
+/* ============================================
+   Apple Theme — Museum Gallery
+   Photography-first interface where chrome recedes so the product
+   speaks. White / parchment canvas alternates with near-black tile
+   surfaces. Single Action Blue (#0066cc) is the only interactive color.
+   No decorative gradients, no chrome shadows — just one signature drop
+   shadow under product imagery.
+   Inspired by apple.com — see public/design-md/apple.md
+   ============================================ */
+
+:root {
+  /* Backgrounds — parchment floor, pearl surface, white cards */
+  --color-t-deep: #f5f5f7;       /* canvas-parchment — page floor */
+  --color-t-surface: #fafafc;    /* surface-pearl */
+  --color-t-card: #ffffff;       /* canvas */
+  --color-t-hover: #f0f0f0;      /* divider-soft */
+
+  /* Text — near-black ink, deep neutrals */
+  --color-t-text: #1d1d1f;       /* body */
+  --color-t-bright: #1d1d1f;     /* ink (same as body — Apple's hierarchy is size, not color) */
+  --color-t-muted: #7a7a7a;      /* ink-muted-48 */
+
+  /* Accents — single Action Blue */
+  --color-t-accent: #0066cc;          /* Apple's Action Blue */
+  --color-t-accent-alt: #2997ff;      /* primary-on-dark — used over dark tile surfaces */
+  --color-t-accent-glow: rgba(0, 102, 204, 0.10);
+  --color-t-accent-alt-glow: rgba(41, 151, 255, 0.10);
+
+  /* Semantic */
+  --color-t-info: #0066cc;
+  --color-t-success: #248a3d;
+  --color-t-warning: #c48a3a;
+  --color-t-error: #b91d23;
+
+  /* Borders — hairline tones */
+  --color-t-border: #e0e0e0;     /* hairline */
+  --color-t-border-active: #0066cc;
+
+  /* Font families
+     Apple's chrome runs on SF Pro Display / SF Pro Text — bundled by macOS/iOS.
+     On non-Apple platforms the system stack falls back to the host UI font. */
+  --font-primary: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', sans-serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'SF Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal {
+  font-family: var(--font-terminal);
+}
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 17px;          /* Apple's body sits at 17 — rare among dashboards */
+  line-height: 1.47;
+  letter-spacing: -0.022em; /* SF Pro Text body tracking */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Card: white, generous 18px rounding, hairline border, no shadow at rest --- */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 18px;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.t-card:hover {
+  /* The system's signature one-shadow tier — used under product imagery on
+     surfaces, here applied as a hover affordance. */
+  border-color: transparent;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Glow: Action Blue ring on focus --- */
+.t-glow {
+  box-shadow: 0 0 0 4px var(--color-t-accent-glow);
+}
+
+/* --- Background pattern: nothing.
+     Apple chrome explicitly recedes — no gradients, no patterns, no dots.
+     Leave the surface flat so content carries the page. */
+.t-bg-pattern {
+  background-image: none;
+}
+
+/* --- Skeleton Shimmer --- */
+.t-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-t-hover) 0%,
+    var(--color-t-card) 40%,
+    var(--color-t-hover) 80%
+  );
+  background-size: 200% 100%;
+  animation: t-shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes t-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- Status dots --- */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.live {
+  background: var(--color-t-success);
+  box-shadow: 0 0 6px rgba(36, 138, 61, 0.35);
+  animation: status-blink 1.8s ease-in-out infinite;
+}
+
+.status-dot.idle {
+  background: var(--color-t-warning);
+}
+
+.status-dot.error {
+  background: var(--color-t-error);
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-t-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d2d2d7;        /* surface-chip-translucent */
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-t-muted);
+}

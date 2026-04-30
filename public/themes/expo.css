@@ -1,0 +1,95 @@
+/* ============================================
+   Expo Theme — Luminous Developer Platform
+   Cool off-white canvas (#f0f0f3) with strict monochrome chrome:
+   pure black headlines, cool blue-gray body, no decorative color in
+   the interface. Color appears only in product screenshots. Pill
+   geometry everywhere; massive display headlines with tight tracking.
+   Inspired by expo.dev — see public/design-md/expo.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #f0f0f3;        /* cloud gray — cool off-white */
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #e8e8eb;
+
+  --color-t-text: #60646c;        /* slate gray — the workhorse body color */
+  --color-t-bright: #000000;
+  --color-t-muted: #b0b4ba;       /* silver */
+
+  /* Black primary, link cobalt as the only chromatic accent */
+  --color-t-accent: #000000;
+  --color-t-accent-alt: #0d74ce;  /* link cobalt */
+  --color-t-accent-glow: rgba(0, 0, 0, 0.10);
+  --color-t-accent-alt-glow: rgba(13, 116, 206, 0.12);
+
+  --color-t-info: #0d74ce;
+  --color-t-success: #1f8a65;
+  --color-t-warning: #ab6400;
+  --color-t-error: #eb8e90;
+
+  --color-t-border: #e0e1e6;       /* border lavender */
+  --color-t-border-active: #000000;
+
+  --font-primary: 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display headings get extreme negative tracking — Expo's signature */
+h1, .font-display { letter-spacing: -0.04em; font-weight: 600; }
+h2 { letter-spacing: -0.025em; font-weight: 600; }
+
+/* Cards: white, very generous 24px rounding (Expo's pill-leaning geometry) */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 24px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: rgba(0, 0, 0, 0.20);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.t-glow { box-shadow: 0 0 0 4px var(--color-t-accent-glow); }
+
+/* Cool blue-violet wash — Expo's "cloud gray" surface has the faintest tint */
+.t-bg-pattern {
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(13, 116, 206, 0.04) 0%, transparent 50%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.6s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(31, 138, 101, 0.30); animation: status-blink 1.8s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #cbcdd2; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

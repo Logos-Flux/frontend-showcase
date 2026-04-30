@@ -1,0 +1,99 @@
+/* ============================================
+   Superhuman Theme — Luxury Productivity
+   Predominantly white with a deep purple gradient hero (Mysteria
+   #1b1938) — the cinematic curtain-lift. Lavender Glow (#cbb7fb) is
+   the singular accent. Warm cream (#e9e5dd) buttons replace bright
+   CTAs — understated luxury. Super Sans VF unconventional weight
+   stops (460/540) sit between traditional categories.
+   Inspired by superhuman.com — see public/design-md/superhuman.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #ffffff;
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #e9e5dd;       /* warm cream */
+
+  --color-t-text: #292827;        /* charcoal ink */
+  --color-t-bright: #1b1938;      /* mysteria — the deep purple */
+  --color-t-muted: #6e6864;
+
+  --color-t-accent: #1b1938;      /* mysteria primary */
+  --color-t-accent-alt: #cbb7fb;  /* lavender glow */
+  --color-t-accent-glow: rgba(27, 25, 56, 0.10);
+  --color-t-accent-alt-glow: rgba(203, 183, 251, 0.30);
+
+  --color-t-info: #714cb6;        /* amethyst link */
+  --color-t-success: #008a05;
+  --color-t-warning: #c08532;
+  --color-t-error: #c41c1c;
+
+  --color-t-border: #dcd7d3;      /* parchment border */
+  --color-t-border-active: #1b1938;
+
+  /* Super Sans VF is proprietary; Inter is the closest open match. */
+  --font-primary: 'Super Sans VF', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Super Sans VF', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 460;        /* Super Sans's signature non-standard body weight */
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display: ultra-tight 0.96 line-height — compressed, powerful headlines */
+h1, .font-display { font-weight: 600; line-height: 0.96; letter-spacing: -0.025em; color: var(--color-t-bright); }
+h2 { font-weight: 540; line-height: 1.05; letter-spacing: -0.018em; color: var(--color-t-bright); }
+h3 { font-weight: 540; color: var(--color-t-bright); }
+
+/* Cards: minimal 8px rounding — Superhuman's restrained scale (only 8 and 16) */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 8px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-bright);
+  box-shadow: 0 8px 28px rgba(27, 25, 56, 0.08);
+}
+
+.t-glow { box-shadow: 0 0 0 3px var(--color-t-accent-alt-glow); }
+
+/* The Mysteria gradient curtain — twilight purple bleeding into white */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(27, 25, 56, 0.06) 0%, transparent 35%),
+    radial-gradient(ellipse at 50% 25%, rgba(203, 183, 251, 0.06) 0%, transparent 50%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.6s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(0, 138, 5, 0.30); animation: status-blink 1.8s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-t-border); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

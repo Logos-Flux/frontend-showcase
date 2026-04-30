@@ -1,0 +1,102 @@
+/* ============================================
+   Lovable Theme — Warm Parchment Restraint
+   Cream parchment canvas (#f7f4ed) — deliberately not white. Charcoal
+   text (#1c1c1c) at varying opacities is the entire neutral palette,
+   creating an opacity-driven depth model where every gray is the same
+   hue at different transparency. Full-pill buttons (9999px) and
+   multi-layer inset shadow signature.
+   Inspired by lovable.dev — see public/design-md/lovable.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #f7f4ed;        /* cream */
+  --color-t-surface: #fcfbf8;
+  --color-t-card: #f7f4ed;
+  --color-t-hover: rgba(28, 28, 28, 0.04);
+
+  --color-t-text: rgba(28, 28, 28, 0.82);
+  --color-t-bright: #1c1c1c;
+  --color-t-muted: rgba(28, 28, 28, 0.55);
+
+  /* Charcoal as primary CTA, ring blue as the rare cool signal */
+  --color-t-accent: #1c1c1c;
+  --color-t-accent-alt: #3b82f6;
+  --color-t-accent-glow: rgba(28, 28, 28, 0.10);
+  --color-t-accent-alt-glow: rgba(59, 130, 246, 0.10);
+
+  --color-t-info: #3b82f6;
+  --color-t-success: #16a34a;
+  --color-t-warning: #c08532;
+  --color-t-error: #c64545;
+
+  --color-t-border: #eceae4;
+  --color-t-border-active: rgba(28, 28, 28, 0.40);
+
+  /* Camera Plain Variable is proprietary; Inter is the closest open match. */
+  --font-primary: 'Camera Plain Variable', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Camera Plain Variable', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display compressed with editorial negative tracking */
+h1, .font-display { font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; color: var(--color-t-bright); }
+h2 { font-weight: 600; letter-spacing: -0.018em; color: var(--color-t-bright); }
+
+/* Cards: cream surface with the signature multi-layer inset shadow on hover */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 12px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: rgba(28, 28, 28, 0.40);
+  /* Lovable's signature inset stack — adds tactile physicality */
+  box-shadow:
+    rgba(255, 255, 255, 0.20) 0 0.5px 0 0 inset,
+    rgba(0, 0, 0, 0.20)       0 0 0 0.5px inset,
+    rgba(0, 0, 0, 0.05)       0 1px 2px 0,
+    rgba(0, 0, 0, 0.10)       0 4px 12px;
+  transform: translateY(-1px);
+}
+
+.t-glow { box-shadow: rgba(0, 0, 0, 0.10) 0 4px 12px, 0 0 0 3px rgba(28, 28, 28, 0.06); }
+
+.t-bg-pattern {
+  /* Faint warm radial wash — the parchment has fibers */
+  background-image: radial-gradient(ellipse at 30% 30%, rgba(28, 28, 28, 0.025) 0%, transparent 50%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.6s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(22, 163, 74, 0.30); animation: status-blink 1.8s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: rgba(28, 28, 28, 0.18); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

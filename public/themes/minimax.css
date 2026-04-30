@@ -1,0 +1,101 @@
+/* ============================================
+   MiniMax Theme — Approachable AI Showcase
+   White-dominant canvas with brand-blue spectrum (#1456f0 / #3b82f6)
+   and brand pink (#ea5ec1) as the secondary accent. Pill buttons
+   (9999px) for primary navigation; 20–24px rounded cards for product
+   showcases. Multi-font typographic ecosystem: DM Sans body, Outfit
+   display.
+   Inspired by minimax.io — see public/design-md/minimax.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #f7f8fa;
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #f0f0f0;
+
+  --color-t-text: #45515e;
+  --color-t-bright: #18181b;
+  --color-t-muted: #8e8e93;
+
+  /* Brand blue + brand pink secondary */
+  --color-t-accent: #1456f0;
+  --color-t-accent-alt: #ea5ec1;
+  --color-t-accent-glow: rgba(20, 86, 240, 0.12);
+  --color-t-accent-alt-glow: rgba(234, 94, 193, 0.14);
+
+  --color-t-info: #3b82f6;
+  --color-t-success: #16a34a;
+  --color-t-warning: #f59e0b;
+  --color-t-error: #ef4444;
+
+  --color-t-border: #e5e7eb;
+  --color-t-border-active: #1456f0;
+
+  /* DM Sans + Outfit are open-licensed and bundled. */
+  --font-primary: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Outfit', 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 500; line-height: 1.10; letter-spacing: -0.02em; color: var(--color-t-bright); }
+h2 { font-weight: 500; letter-spacing: -0.015em; color: var(--color-t-bright); }
+
+/* Cards: very generous 20px rounding — product-card showcase feel */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 20px;
+  /* Purple-tinted shadow signature */
+  box-shadow: 0 2px 8px rgba(44, 30, 116, 0.06);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  box-shadow: 0 12px 32px rgba(44, 30, 116, 0.12);
+  transform: translateY(-2px);
+}
+
+.t-glow { box-shadow: 0 0 0 4px var(--color-t-accent-glow); }
+
+/* Multi-color product wash — pink + blue + sky */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(circle at 18% 22%, rgba(20, 86, 240, 0.04) 0%, transparent 35%),
+    radial-gradient(circle at 78% 28%, rgba(234, 94, 193, 0.04) 0%, transparent 35%),
+    radial-gradient(circle at 50% 90%, rgba(61, 174, 255, 0.04) 0%, transparent 40%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(22, 163, 74, 0.40); animation: status-blink 1.6s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

@@ -1,0 +1,99 @@
+/* ============================================
+   Intercom Theme — Warm AI-First Helpdesk
+   Warm off-white canvas (#faf9f6) with off-black (#111111) ink and
+   Fin Orange (#ff5600) as the singular brand voltage. Sharp 4px
+   border-radius — near-rectangular, industrial. Saans display with
+   extreme negative tracking and 1.0 line-height creates billboard
+   headlines. Oat-toned warm borders (#dedbd6).
+   Inspired by intercom.com — see public/design-md/intercom.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #faf9f6;        /* warm cream */
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #f3f1eb;
+
+  --color-t-text: #313130;        /* black 80 */
+  --color-t-bright: #111111;
+  --color-t-muted: #7b7b78;       /* black 50 */
+
+  /* Fin Orange singular accent, deep blue counterpoint */
+  --color-t-accent: #ff5600;
+  --color-t-accent-alt: #0007cb;  /* deep blue */
+  --color-t-accent-glow: rgba(255, 86, 0, 0.14);
+  --color-t-accent-alt-glow: rgba(0, 7, 203, 0.10);
+
+  --color-t-info: #65b5ff;        /* report blue */
+  --color-t-success: #0bdf50;     /* report green */
+  --color-t-warning: #ff5600;     /* fin doubles as warning */
+  --color-t-error: #c41c1c;       /* report red */
+
+  --color-t-border: #dedbd6;      /* oat border — the warm signature */
+  --color-t-border-active: #111111;
+
+  /* Saans is proprietary; Inter is the closest open match. */
+  --font-primary: 'Saans', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Saans', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'SaansMono', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'SaansMono', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); text-transform: uppercase; letter-spacing: 0.05em; }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display: extreme negative tracking, 1.0 line-height — Intercom's billboard signature */
+h1, .font-display { letter-spacing: -0.04em; line-height: 1.0; font-weight: 600; }
+h2 { letter-spacing: -0.025em; line-height: 1.05; font-weight: 600; }
+
+/* Cards: white, sharp 4px corners, oat hairline */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 4px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  box-shadow: 0 4px 16px rgba(255, 86, 0, 0.10);
+  transform: translateY(-1px);
+}
+
+.t-glow { box-shadow: 0 0 0 3px var(--color-t-accent-glow); }
+
+/* Soft Fin Orange wash + cool deep-blue counterpoint */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 18% 22%, rgba(255, 86, 0, 0.04) 0%, transparent 45%),
+    radial-gradient(ellipse at 82% 78%, rgba(0, 7, 203, 0.03) 0%, transparent 45%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(11, 223, 80, 0.40); animation: status-blink 1.4s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #d3cec6; border-radius: 0; }   /* warm sand */
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

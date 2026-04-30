@@ -1,0 +1,101 @@
+/* ============================================
+   VoltAgent Theme — Deep-Space Command Terminal
+   Carbon-black canvas (#050507) with Emerald Signal Green (#00d992)
+   as the singular brand energy — used like a circuit board carrying
+   a signal. Warm-charcoal borders (#3d3a39) prevent the dark theme
+   from feeling clinical.
+   Inspired by voltagent.dev — see public/design-md/voltagent.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #050507;        /* abyss black */
+  --color-t-surface: #0a0a0c;
+  --color-t-card: #101010;        /* carbon surface */
+  --color-t-hover: #1a1a1d;
+
+  --color-t-text: #b8b3b0;        /* warm parchment */
+  --color-t-bright: #f2f2f2;      /* snow white */
+  --color-t-muted: #8b949e;       /* steel slate */
+
+  --color-t-accent: #00d992;      /* emerald signal green */
+  --color-t-accent-alt: #818cf8;  /* soft purple */
+  --color-t-accent-glow: rgba(0, 217, 146, 0.22);
+  --color-t-accent-alt-glow: rgba(129, 140, 248, 0.14);
+
+  --color-t-info: #306cce;
+  --color-t-success: #00d992;
+  --color-t-warning: #ffba00;
+  --color-t-error: #ff4d4d;
+
+  --color-t-border: #3d3a39;      /* warm charcoal — the signature */
+  --color-t-border-active: #00d992;
+
+  /* System-ui for headings, Inter for body, SFMono for code */
+  --font-primary: 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Inter Variable', Inter, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'SF Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); text-transform: uppercase; letter-spacing: 0.10em; }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display: ultra-tight 1.0 line-heights — dense compressed power blocks */
+h1, .font-display { font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; color: var(--color-t-bright); }
+h2 { font-weight: 700; line-height: 1.1; color: var(--color-t-bright); }
+
+/* Cards: carbon surface, warm-charcoal hairline, green glow on hover */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  box-shadow: 0 0 0 1px var(--color-t-accent), 0 0 24px var(--color-t-accent-glow);
+}
+
+.t-glow {
+  box-shadow:
+    0 0 0 1px var(--color-t-accent),
+    0 0 18px var(--color-t-accent-glow),
+    0 0 36px rgba(0, 217, 146, 0.10);
+}
+
+/* Subtle emerald wash + warm-brown undertone */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 18% 0%, rgba(0, 217, 146, 0.07) 0%, transparent 40%),
+    radial-gradient(ellipse at 82% 100%, rgba(61, 58, 57, 0.40) 0%, transparent 50%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-accent); box-shadow: 0 0 8px var(--color-t-accent); animation: status-blink 1.5s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-t-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

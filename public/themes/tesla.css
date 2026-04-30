@@ -1,0 +1,93 @@
+/* ============================================
+   Tesla Theme — Radical Subtraction
+   Pure white minimalism with cinematic photography aesthetic.
+   Single Electric Blue (#3E6AE1) for primary CTAs only — the only
+   chromatic color in the entire interface. Universal Sans (Inter
+   substitute) Display + Text. NO shadows, NO gradients, NO borders,
+   NO patterns — every pixel that isn't content is whitespace.
+   Inspired by tesla.com — see public/design-md/tesla.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #ffffff;
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #f4f4f4;       /* light ash */
+
+  --color-t-text: #393C41;        /* graphite */
+  --color-t-bright: #171A20;      /* carbon dark */
+  --color-t-muted: #5C5E62;       /* pewter */
+
+  /* Single Electric Blue — Tesla's only chromatic interaction color */
+  --color-t-accent: #3E6AE1;
+  --color-t-accent-alt: #171A20;
+  --color-t-accent-glow: rgba(62, 106, 225, 0.14);
+  --color-t-accent-alt-glow: rgba(23, 26, 32, 0.06);
+
+  --color-t-info: #3E6AE1;
+  --color-t-success: #3E6AE1;     /* even success is Electric Blue — disciplined */
+  --color-t-warning: #c08532;
+  --color-t-error: #c41c1c;
+
+  --color-t-border: #EEEEEE;      /* cloud gray */
+  --color-t-border-active: #3E6AE1;
+
+  /* Universal Sans is proprietary; Inter is the closest open match. */
+  --font-primary: 'Universal Sans Text', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Universal Sans Display', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 14px;        /* Tesla body is 14 — compact information density */
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 500; letter-spacing: -0.01em; line-height: 1.1; color: var(--color-t-bright); }
+h2 { font-weight: 500; color: var(--color-t-bright); }
+
+/* Cards: white, 4px rounding — Tesla's near-zero decoration */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 4px;
+  transition: border-color 0.33s cubic-bezier(0.5, 0, 0, 0.75), background 0.33s cubic-bezier(0.5, 0, 0, 0.75);
+}
+
+.t-card:hover {
+  border-color: var(--color-t-bright);
+  background: var(--color-t-hover);
+}
+
+.t-glow { box-shadow: 0 0 0 3px var(--color-t-accent-glow); }
+
+/* No pattern — Tesla's most powerful design statement is the absence of design */
+.t-bg-pattern { background-image: none; }
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.6s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-accent); box-shadow: 0 0 6px var(--color-t-accent-glow); animation: status-blink 1.8s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-muted); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #D0D1D2; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

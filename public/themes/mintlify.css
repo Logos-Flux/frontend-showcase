@@ -1,0 +1,95 @@
+/* ============================================
+   Mintlify Theme — Documentation as Product
+   Pure white canvas with near-black ink and a signature brand green
+   (#18E299) used sparingly. Atmospheric green-white gradient hero
+   wash, ultra-round corners (16–24px), whisper-thin 5%-opacity
+   borders. Calm, confident, engineered for legibility.
+   Inspired by mintlify.com — see public/design-md/mintlify.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #fafafa;
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #f5f5f5;
+
+  --color-t-text: #333333;
+  --color-t-bright: #0d0d0d;
+  --color-t-muted: #666666;
+
+  /* Brand green is the singular accent */
+  --color-t-accent: #18E299;
+  --color-t-accent-alt: #0fa76e;     /* deep green for hover */
+  --color-t-accent-glow: rgba(24, 226, 153, 0.16);
+  --color-t-accent-alt-glow: rgba(15, 167, 110, 0.12);
+
+  --color-t-info: #3772cf;
+  --color-t-success: #18E299;
+  --color-t-warning: #c37d0d;
+  --color-t-error: #d45656;
+
+  --color-t-border: rgba(0, 0, 0, 0.05);
+  --color-t-border-active: #18E299;
+
+  --font-primary: 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-terminal: 'Geist Mono Variable', 'Geist Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); text-transform: uppercase; letter-spacing: 0.08em; }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; color: var(--color-t-bright); }
+h2 { font-weight: 600; letter-spacing: -0.015em; color: var(--color-t-bright); }
+
+/* Cards: ultra-round 16px corners, whisper-thin 5% black border */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 16px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: rgba(24, 226, 153, 0.35);
+  box-shadow: 0 8px 28px rgba(24, 226, 153, 0.10);
+}
+
+.t-glow { box-shadow: 0 0 0 4px var(--color-t-accent-glow); }
+
+/* Mintlify's signature atmospheric green-to-white hero wash */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(24, 226, 153, 0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(212, 250, 232, 0.55) 0%, transparent 60%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-accent); box-shadow: 0 0 8px var(--color-t-accent-glow); animation: status-blink 1.6s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

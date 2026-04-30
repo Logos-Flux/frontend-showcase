@@ -1,0 +1,160 @@
+/* ============================================
+   Aurum Theme — Dark Luxury
+   Near-black backgrounds, gold accents,
+   serif display font, grain texture overlay
+   ============================================ */
+
+/* --- Theme Tokens --- */
+:root {
+  /* Backgrounds */
+  --color-t-deep: #0c0c0c;
+  --color-t-surface: #131313;
+  --color-t-card: #1a1a1a;
+  --color-t-hover: #222222;
+
+  /* Text */
+  --color-t-text: #9e9689;
+  --color-t-bright: #ede8e0;
+  --color-t-muted: #605b54;
+
+  /* Accents */
+  --color-t-accent: #c9a96e;
+  --color-t-accent-alt: #7b97ad;
+  --color-t-accent-glow: rgba(201, 169, 110, 0.08);
+  --color-t-accent-alt-glow: rgba(123, 151, 173, 0.08);
+
+  /* Semantic */
+  --color-t-info: #7b97ad;
+  --color-t-success: #8a9e72;
+  --color-t-warning: #c9a96e;
+  --color-t-error: #9b7070;
+
+  /* Borders */
+  --color-t-border: rgba(255, 255, 255, 0.06);
+  --color-t-border-active: rgba(201, 169, 110, 0.3);
+
+  /* Font families */
+  --font-primary: 'DM Sans', system-ui, sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-terminal: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.font-terminal {
+  font-family: var(--font-terminal);
+}
+
+/* --- Base Styles --- */
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Card Style --- */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 6px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.t-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-t-border-active);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Glow Effects --- */
+.t-glow {
+  box-shadow: 0 0 20px var(--color-t-accent-glow);
+}
+
+/* --- Grain Texture Background Pattern --- */
+.t-bg-pattern {
+  position: relative;
+}
+
+.t-bg-pattern::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.022;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Status Indicators --- */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.live {
+  background: var(--color-t-success);
+  box-shadow: 0 0 6px var(--color-t-success);
+  animation: status-blink 1.5s ease-in-out infinite;
+}
+
+.status-dot.idle {
+  background: var(--color-t-warning);
+}
+
+.status-dot.error {
+  background: var(--color-t-error);
+  box-shadow: 0 0 6px var(--color-t-error);
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* --- Skeleton Shimmer --- */
+.t-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-t-hover) 0%,
+    var(--color-t-card) 40%,
+    var(--color-t-hover) 80%
+  );
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes t-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-t-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-t-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-t-accent);
+}

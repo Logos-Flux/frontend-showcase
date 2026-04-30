@@ -1,0 +1,110 @@
+/* ============================================
+   SpaceX Theme — Aerospace Cinema
+   Pure black canvas with full-viewport photography aesthetic.
+   D-DIN proprietary industrial-DIN sans (system fallback) with
+   universal uppercase + positive 0.07em letter-spacing creates an
+   aerospace stencil aesthetic — every word feels stamped onto a
+   spacecraft hull. Spectral near-white (#f0f0fa) text with a
+   slight blue-violet tint that mimics starlight. Zero shadows,
+   zero cards, zero containers — text on image only.
+   Inspired by spacex.com — see public/design-md/spacex.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #000000;
+  --color-t-surface: #050505;
+  --color-t-card: rgba(240, 240, 250, 0.10);    /* ghost surface */
+  --color-t-hover: rgba(240, 240, 250, 0.18);
+
+  --color-t-text: #f0f0fa;        /* spectral white */
+  --color-t-bright: #ffffff;
+  --color-t-muted: rgba(240, 240, 250, 0.55);
+
+  /* No chromatic accent — spectral-white IS the brand */
+  --color-t-accent: #f0f0fa;
+  --color-t-accent-alt: #ffffff;
+  --color-t-accent-glow: rgba(240, 240, 250, 0.10);
+  --color-t-accent-alt-glow: rgba(255, 255, 255, 0.08);
+
+  --color-t-info: #f0f0fa;
+  --color-t-success: #f0f0fa;
+  --color-t-warning: #f0f0fa;
+  --color-t-error: #ff6363;
+
+  --color-t-border: rgba(240, 240, 250, 0.35);
+  --color-t-border-active: #ffffff;
+
+  /* D-DIN is proprietary; the system Arial fallback the brand uses keeps the
+     industrial DIN-heritage proportions intact. */
+  --font-primary: 'D-DIN', Arial, Verdana, ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'D-DIN-Bold', 'D-DIN', Arial, Verdana, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  text-transform: uppercase;        /* universal uppercase — the aerospace stencil rule */
+  letter-spacing: 0.06em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Body copy needs case to remain readable — restore mixed-case for paragraphs */
+p, code, pre, .design-md-prose {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, h2, h3, .font-display {
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: 0.06em;
+  color: var(--color-t-bright);
+}
+
+/* Cards: ghost surface with spectral border, 32px rounding (the lone interactive radius) */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 32px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.t-card:hover {
+  background: var(--color-t-hover);
+  border-color: var(--color-t-bright);
+}
+
+.t-glow { box-shadow: 0 0 0 2px var(--color-t-bright); }
+
+/* Photography is the brand — pattern is empty on purpose, with a faint dark overlay */
+.t-bg-pattern {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 0; display: inline-block; }
+.status-dot.live { background: var(--color-t-bright); animation: status-blink 1.4s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-muted); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: rgba(240, 240, 250, 0.20); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

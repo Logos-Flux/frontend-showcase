@@ -1,0 +1,155 @@
+/* ============================================
+   52L Theme — Launch Velocity
+   Light corporate, deep indigo + energetic coral,
+   geometric, tight radii, Space Grotesk + Inter.
+   Inspired by 52launch.com
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Backgrounds */
+  --color-t-deep: #f4f5f8;
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #eaecf1;
+
+  /* Text */
+  --color-t-text: #2b2f3a;
+  --color-t-bright: #0c0f1d;
+  --color-t-muted: #6b7280;
+
+  /* Accents — indigo primary + coral launch alt */
+  --color-t-accent: #2b3aa2;
+  --color-t-accent-alt: #ff5a4e;
+  --color-t-accent-glow: rgba(43, 58, 162, 0.10);
+  --color-t-accent-alt-glow: rgba(255, 90, 78, 0.14);
+
+  /* Semantic */
+  --color-t-info: #2b3aa2;
+  --color-t-success: #10b981;
+  --color-t-warning: #f59e0b;
+  --color-t-error: #ff5a4e;
+
+  /* Borders */
+  --color-t-border: #d9dce4;
+  --color-t-border-active: #2b3aa2;
+
+  /* Font families */
+  --font-primary: 'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-terminal: 'JetBrains Mono', monospace;
+}
+
+.font-terminal {
+  font-family: var(--font-terminal);
+}
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Card: sharp, geometric, thin border --- */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 4px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-border-active);
+  box-shadow: 0 8px 24px rgba(43, 58, 162, 0.08);
+}
+
+/* --- Glow: ember trail --- */
+.t-glow {
+  box-shadow: 0 0 18px var(--color-t-accent-alt-glow);
+}
+
+/* --- Diagonal stripe background --- */
+.t-bg-pattern {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0,
+    transparent 18px,
+    rgba(43, 58, 162, 0.025) 18px,
+    rgba(43, 58, 162, 0.025) 19px
+  );
+}
+
+/* --- Skeleton Shimmer --- */
+.t-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-t-hover) 0%,
+    var(--color-t-card) 40%,
+    var(--color-t-hover) 80%
+  );
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes t-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- Status dots --- */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.live {
+  background: var(--color-t-accent-alt);
+  box-shadow: 0 0 6px var(--color-t-accent-alt-glow);
+  animation: status-blink 1.2s ease-in-out infinite;
+}
+
+.status-dot.idle {
+  background: var(--color-t-warning);
+}
+
+.status-dot.error {
+  background: var(--color-t-error);
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-t-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c5c9d3;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-t-accent);
+}

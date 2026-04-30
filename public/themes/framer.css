@@ -1,0 +1,105 @@
+/* ============================================
+   Framer Theme — Nightclub for Designers
+   Pure black void canvas (#000000) — absolute dark, not warm. GT
+   Walsheim display with extreme negative letter-spacing creates
+   compressed, kinetic headlines. Framer Blue (#0099ff) deployed
+   sparingly as link/border/ring. Pill buttons (40-100px), frosted
+   glass on dark surfaces.
+   Inspired by framer.com — see public/design-md/framer.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #000000;
+  --color-t-surface: #090909;     /* near black — elevated surface */
+  --color-t-card: rgba(255, 255, 255, 0.04);
+  --color-t-hover: rgba(255, 255, 255, 0.10);    /* frosted white */
+
+  --color-t-text: #a6a6a6;        /* muted silver */
+  --color-t-bright: #ffffff;
+  --color-t-muted: rgba(255, 255, 255, 0.40);    /* ghost white */
+
+  /* Framer Blue is the sole accent */
+  --color-t-accent: #0099ff;
+  --color-t-accent-alt: #ffffff;
+  --color-t-accent-glow: rgba(0, 153, 255, 0.20);
+  --color-t-accent-alt-glow: rgba(255, 255, 255, 0.10);
+
+  --color-t-info: #0099ff;
+  --color-t-success: #22c55e;
+  --color-t-warning: #f59e0b;
+  --color-t-error: #ef4444;
+
+  --color-t-border: rgba(255, 255, 255, 0.10);
+  --color-t-border-active: #0099ff;
+
+  /* GT Walsheim is proprietary; Inter is the closest open match for its tight modern proportions. */
+  --font-primary: 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'GT Walsheim', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-feature-settings: "cv01", "cv05", "cv09", "cv11", "ss03", "ss07";
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display gets extreme tracking — Framer's signature spring-loaded headlines */
+h1, .font-display { letter-spacing: -0.05em; font-weight: 700; line-height: 0.95; }
+h2 { letter-spacing: -0.035em; font-weight: 700; }
+
+/* Cards: frosted glass with very generous rounding (Framer's pill bias) */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: rgba(0, 153, 255, 0.40);
+  box-shadow: 0 0 0 1px rgba(0, 153, 255, 0.15), 0 0 32px rgba(0, 153, 255, 0.08);
+}
+
+.t-glow {
+  box-shadow:
+    0 0 0 1px var(--color-t-accent),
+    0 0 24px var(--color-t-accent-glow),
+    0 0 48px rgba(0, 153, 255, 0.10);
+}
+
+/* Subtle blue-tinted radial glow — Framer's depth signature */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 30% 0%, rgba(0, 153, 255, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 100%, rgba(0, 153, 255, 0.04) 0%, transparent 50%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-accent); box-shadow: 0 0 8px var(--color-t-accent); animation: status-blink 1.5s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-t-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

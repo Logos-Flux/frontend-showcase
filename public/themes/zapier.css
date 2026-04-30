@@ -1,0 +1,100 @@
+/* ============================================
+   Zapier Theme — Warm Approachable Automation
+   Cream-tinted canvas (#fffefb) — unbleached paper, not pure white.
+   Near-black with reddish-brown undertone (#201515) — text that
+   breathes. Zapier Orange (#ff4f00) as the singular vivid accent.
+   Border-forward design: 1px sand borders define structure where
+   most systems use shadows.
+   Inspired by zapier.com — see public/design-md/zapier.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #fffefb;        /* cream white — unbleached paper */
+  --color-t-surface: #fffdf9;     /* off-white */
+  --color-t-card: #fffefb;
+  --color-t-hover: #eceae3;       /* light sand */
+
+  --color-t-text: #36342e;        /* warm dark charcoal */
+  --color-t-bright: #201515;      /* warm near-black with reddish undertone */
+  --color-t-muted: #939084;       /* warm gray */
+
+  /* Zapier Orange — vivid, warm, sparingly applied */
+  --color-t-accent: #ff4f00;
+  --color-t-accent-alt: #201515;
+  --color-t-accent-glow: rgba(255, 79, 0, 0.14);
+  --color-t-accent-alt-glow: rgba(32, 21, 21, 0.10);
+
+  --color-t-info: #146ef5;
+  --color-t-success: #008a05;
+  --color-t-warning: #ff4f00;
+  --color-t-error: #d03238;
+
+  --color-t-border: #c5c0b1;      /* sand — the structural backbone */
+  --color-t-border-active: #ff4f00;
+
+  /* Degular Display + GT Alpina are proprietary. Inter is bundled and is
+     the universal Zapier UI font; Fraunces substitutes for the GT Alpina
+     editorial moments. */
+  --font-primary: 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-display: 'Degular Display', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display: Degular at 0.90 line-height — compressed stacked-block headlines */
+h1, .font-display { font-weight: 500; line-height: 0.90; letter-spacing: -0.025em; color: var(--color-t-bright); }
+h2 { font-weight: 500; line-height: 1.0; letter-spacing: -0.02em; color: var(--color-t-bright); }
+
+/* Cards: cream surface, sand hairline — border-forward design */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-bright);
+  box-shadow: 0 4px 16px rgba(32, 21, 21, 0.06);
+}
+
+.t-glow { box-shadow: 0 0 0 3px var(--color-t-accent-glow); }
+
+/* Subtle warm wash + orange hint at edges */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 30% 30%, rgba(236, 234, 227, 0.5) 0%, transparent 55%),
+    radial-gradient(circle at 92% 8%, rgba(255, 79, 0, 0.04) 0%, transparent 14%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(0, 138, 5, 0.40); animation: status-blink 1.6s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #b5b2aa; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

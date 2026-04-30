@@ -1,0 +1,146 @@
+/* ============================================
+   Monolith Theme — Editorial Brutalism
+   Near-black/neutral grays, high-contrast white accents,
+   sharp 2px borders, no glow, typographic display.
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Backgrounds */
+  --color-t-deep: #0a0a0a;
+  --color-t-surface: #121212;
+  --color-t-card: #1a1a1a;
+  --color-t-hover: #242424;
+
+  /* Text */
+  --color-t-text: #b8b8b8;
+  --color-t-bright: #fafafa;
+  --color-t-muted: #6b6b6b;
+
+  /* Accents */
+  --color-t-accent: #fafafa;
+  --color-t-accent-alt: #f25f4c;
+  --color-t-accent-glow: rgba(250, 250, 250, 0);
+  --color-t-accent-alt-glow: rgba(242, 95, 76, 0.12);
+
+  /* Semantic */
+  --color-t-info: #7aa2f7;
+  --color-t-success: #9ece6a;
+  --color-t-warning: #e0af68;
+  --color-t-error: #f7768e;
+
+  /* Borders */
+  --color-t-border: #2a2a2a;
+  --color-t-border-active: #fafafa;
+
+  /* Font families */
+  --font-primary: 'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-terminal: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.font-terminal {
+  font-family: var(--font-terminal);
+}
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Card: sharp, no blur --- */
+.t-card {
+  background: var(--color-t-card);
+  border: 2px solid var(--color-t-border);
+  border-radius: 0;
+  transition: border-color 0.15s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-border-active);
+}
+
+/* --- Glow: none (brutalism) --- */
+.t-glow {
+  box-shadow: none;
+}
+
+/* --- Dot-grid background --- */
+.t-bg-pattern {
+  background-image: radial-gradient(var(--color-t-border) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* --- Skeleton Shimmer --- */
+.t-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-t-hover) 0%,
+    var(--color-t-card) 40%,
+    var(--color-t-hover) 80%
+  );
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes t-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- Status dots --- */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
+  display: inline-block;
+}
+
+.status-dot.live {
+  background: var(--color-t-accent-alt);
+  animation: status-blink 1.8s ease-in-out infinite;
+}
+
+.status-dot.idle {
+  background: var(--color-t-warning);
+}
+
+.status-dot.error {
+  background: var(--color-t-error);
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-t-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-t-border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-t-accent);
+}

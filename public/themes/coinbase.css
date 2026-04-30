@@ -1,0 +1,95 @@
+/* ============================================
+   Coinbase Theme — Financial Trustworthy
+   Blue-and-white binary palette: Coinbase Blue (#0052ff) as the
+   singular brand voltage on a white / cool-gray canvas. Pill-shaped
+   CTAs with extreme 56px radius, and ultra-tight 1.0 line-height on
+   display headings.
+   Inspired by coinbase.com — see public/design-md/coinbase.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #f7f7f7;       /* light surface */
+  --color-t-surface: #ffffff;    /* canvas */
+  --color-t-card: #ffffff;
+  --color-t-hover: #eef0f3;      /* cool gray surface — the brand's signature secondary */
+
+  --color-t-text: #5b616e;       /* muted blue-gray */
+  --color-t-bright: #0a0b0d;     /* near-black */
+  --color-t-muted: #5b616e;
+
+  /* Single voltage: Coinbase Blue */
+  --color-t-accent: #0052ff;
+  --color-t-accent-alt: #578bfa;     /* hover blue — the only second blue */
+  --color-t-accent-glow: rgba(0, 82, 255, 0.14);
+  --color-t-accent-alt-glow: rgba(87, 139, 250, 0.10);
+
+  --color-t-info: #0667d0;       /* link blue */
+  --color-t-success: #00a85a;
+  --color-t-warning: #e8a52f;
+  --color-t-error: #d92020;
+
+  --color-t-border: rgba(91, 97, 110, 0.20);
+  --color-t-border-active: #0052ff;
+
+  /* CoinbaseDisplay / Sans / Text are proprietary — Inter is the closest open match. */
+  --font-primary: 'CoinbaseSans', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'CoinbaseDisplay', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Cards: white, generous 14px rounding — softer than the 56px button pill but
+   still rounded. The defining brand shape is the pill button, not the card. */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 14px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  box-shadow: 0 6px 20px rgba(0, 82, 255, 0.08);
+}
+
+.t-glow { box-shadow: 0 0 0 4px var(--color-t-accent-glow); }
+
+/* Faint blue wash — the brand uses photography and product UI for visual
+   weight; pages otherwise render flat. We hint at the blue voltage without
+   breaking the binary palette. */
+.t-bg-pattern {
+  background-image: radial-gradient(ellipse at 20% 0%, rgba(0, 82, 255, 0.04) 0%, transparent 50%);
+  background-size: 100% 100%;
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(0, 168, 90, 0.35); animation: status-blink 1.6s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: rgba(91, 97, 110, 0.30); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

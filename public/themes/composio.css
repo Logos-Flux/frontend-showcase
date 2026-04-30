@@ -1,0 +1,104 @@
+/* ============================================
+   Composio Theme — Nocturnal Command Center
+   Pitch-black canvas (#0f0f0f) with near-invisible white-border
+   containment. Brand cobalt (#0007cd) and electric cyan (#00ffff)
+   are rationed signals — bioluminescent glows on cards, hard-offset
+   brutalist shadows on select elements. Developer-terminal aesthetic.
+   Inspired by composio.dev — see public/design-md/composio.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #0f0f0f;       /* void black */
+  --color-t-surface: #000000;    /* pure black for nested containers */
+  --color-t-card: #0f0f0f;       /* card matches void */
+  --color-t-hover: #1a1a1a;
+
+  --color-t-text: rgba(255, 255, 255, 0.60);   /* ghost white */
+  --color-t-bright: #ffffff;
+  --color-t-muted: #444444;      /* muted smoke */
+
+  /* Cobalt primary, electric cyan as the rationed accent */
+  --color-t-accent: #0007cd;
+  --color-t-accent-alt: #00ffff;
+  --color-t-accent-glow: rgba(0, 137, 255, 0.20);     /* signal blue at 20% */
+  --color-t-accent-alt-glow: rgba(0, 255, 255, 0.12);
+
+  --color-t-info: #0089ff;
+  --color-t-success: #22c55e;
+  --color-t-warning: #f59e0b;
+  --color-t-error: #ef4444;
+
+  --color-t-border: rgba(255, 255, 255, 0.10);
+  --color-t-border-active: rgba(0, 255, 255, 0.55);
+
+  /* abcDiatype is proprietary; Inter is the closest open match. JetBrains Mono
+     for code/terminal — Composio leans hard on the dual-font identity. */
+  --font-primary: 'abcDiatype', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'abcDiatype', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono Variable', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Tight headings — Composio compresses display line-height to 0.87 */
+h1, h2, h3, .font-display { line-height: 0.95; letter-spacing: -0.02em; }
+
+/* Cards: void black with hard-offset brutalist shadow on hover */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 4px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: rgba(255, 255, 255, 0.20);
+  /* Hard-offset shadow — Composio's brutalist 4px 4px signature, plus a cyan bioluminescent halo */
+  box-shadow:
+    4px 4px 0 0 rgba(0, 255, 255, 0.18),
+    0 0 32px var(--color-t-accent-glow);
+}
+
+.t-glow {
+  box-shadow:
+    0 0 0 1px var(--color-t-accent-alt),
+    0 0 24px var(--color-t-accent-alt-glow),
+    0 0 48px var(--color-t-accent-glow);
+}
+
+/* Quiet dot grid — code-editor texture */
+.t-bg-pattern {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-accent-alt); box-shadow: 0 0 8px var(--color-t-accent-alt); animation: status-blink 1.5s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); box-shadow: 0 0 6px rgba(239, 68, 68, 0.5); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-t-border); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent-alt); }

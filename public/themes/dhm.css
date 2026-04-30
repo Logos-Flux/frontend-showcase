@@ -1,0 +1,155 @@
+/* ============================================
+   DHM Theme — Aerial Cinematic
+   Light, navy + teal (sky/water) + sunset amber accent,
+   editorial feel, Plus Jakarta Sans + Playfair Display.
+   Inspired by dronehomemedia.com
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;700;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Backgrounds */
+  --color-t-deep: #fafaf8;
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #f0f2f0;
+
+  /* Text */
+  --color-t-text: #3d4a54;
+  --color-t-bright: #0a1e2c;
+  --color-t-muted: #7a8691;
+
+  /* Accents — teal primary + sunset amber alt */
+  --color-t-accent: #14a8a4;
+  --color-t-accent-alt: #e8854b;
+  --color-t-accent-glow: rgba(20, 168, 164, 0.12);
+  --color-t-accent-alt-glow: rgba(232, 133, 75, 0.14);
+
+  /* Semantic */
+  --color-t-info: #14a8a4;
+  --color-t-success: #3e8e66;
+  --color-t-warning: #e8854b;
+  --color-t-error: #c3524a;
+
+  /* Borders */
+  --color-t-border: rgba(10, 30, 44, 0.08);
+  --color-t-border-active: rgba(20, 168, 164, 0.55);
+
+  /* Font families */
+  --font-primary: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-terminal: 'JetBrains Mono', monospace;
+}
+
+.font-terminal {
+  font-family: var(--font-terminal);
+}
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Card: crisp white with editorial shadow --- */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(10, 30, 44, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.t-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-t-border-active);
+  box-shadow: 0 14px 36px rgba(10, 30, 44, 0.08);
+}
+
+/* --- Glow: ocean teal --- */
+.t-glow {
+  box-shadow: 0 0 28px var(--color-t-accent-glow);
+}
+
+/* --- Horizon gradient background --- */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at top, rgba(20, 168, 164, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(232, 133, 75, 0.05) 0%, transparent 55%);
+  background-size: 100% 100%;
+}
+
+/* --- Skeleton Shimmer --- */
+.t-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-t-hover) 0%,
+    var(--color-t-card) 40%,
+    var(--color-t-hover) 80%
+  );
+  background-size: 200% 100%;
+  animation: t-shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes t-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- Status dots --- */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.live {
+  background: var(--color-t-accent);
+  box-shadow: 0 0 6px var(--color-t-accent-glow);
+  animation: status-blink 1.6s ease-in-out infinite;
+}
+
+.status-dot.idle {
+  background: var(--color-t-warning);
+}
+
+.status-dot.error {
+  background: var(--color-t-error);
+  box-shadow: 0 0 6px rgba(195, 82, 74, 0.35);
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-t-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 30, 44, 0.15);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-t-accent);
+}

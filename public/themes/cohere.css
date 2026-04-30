@@ -1,0 +1,96 @@
+/* ============================================
+   Cohere Theme — Controlled Enterprise AI
+   Stark white editorial canvas, deep green-black product bands
+   (#003c33), soft mineral surfaces, rounded media cards, and a
+   distinctive type split — monospaced-feeling display headlines
+   paired with precise Unica77 UI body.
+   Inspired by cohere.com — see public/design-md/cohere.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #ffffff;       /* canvas */
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #eeece7;      /* soft-stone */
+
+  --color-t-text: #212121;       /* ink */
+  --color-t-bright: #17171c;     /* primary */
+  --color-t-muted: #75758a;      /* slate */
+
+  /* Deep-green primary + coral accent */
+  --color-t-accent: #003c33;     /* deep-green */
+  --color-t-accent-alt: #ff7759; /* coral */
+  --color-t-accent-glow: rgba(0, 60, 51, 0.10);
+  --color-t-accent-alt-glow: rgba(255, 119, 89, 0.12);
+
+  --color-t-info: #1863dc;       /* action-blue */
+  --color-t-success: #003c33;    /* the deep green doubles as success */
+  --color-t-warning: #d4a017;
+  --color-t-error: #b30000;
+
+  --color-t-border: #d9d9dd;     /* hairline */
+  --color-t-border-active: #17171c;
+
+  /* CohereText / Unica77 are proprietary. Inter for body, JetBrains Mono
+     can take over the "monospaced-feeling display" voice for hero moments. */
+  --font-primary: 'Unica77 Cohere Web', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'CohereText', 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Cards: mineral surface fill, generous 16px rounding (matches Cohere's media cards) */
+.t-card {
+  background: var(--color-t-hover);  /* soft-stone fill — Cohere's defining card surface */
+  border: 1px solid #f2f2f2;          /* card-border */
+  border-radius: 16px;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 60, 51, 0.08);
+}
+
+.t-glow { box-shadow: 0 0 0 4px var(--color-t-accent-glow); }
+
+/* Pale-green wash + pale-blue counter — a subtle nod to Cohere's pale-green / pale-blue surfaces */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 25% 20%, rgba(237, 252, 233, 0.6) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 80%, rgba(241, 245, 255, 0.55) 0%, transparent 50%);
+  background-size: 100% 100%;
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.6s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-accent); box-shadow: 0 0 6px var(--color-t-accent-glow); animation: status-blink 1.8s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #d0d0d4; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

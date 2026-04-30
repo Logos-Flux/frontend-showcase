@@ -1,0 +1,103 @@
+/* ============================================
+   Miro Theme — Visual Thinking
+   White canvas with near-black text and Blue 450 (#5b76fe) as the
+   primary interactive color. Distinctive pastel accent palette —
+   coral, rose, teal, orange, yellow, moss — each light/dark pair
+   representing different collaboration contexts. Generous border
+   radii (8–24px); ring shadows as borders.
+   Inspired by miro.com — see public/design-md/miro.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #f7f7f9;
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #f0f0f3;
+
+  --color-t-text: #555a6a;        /* slate */
+  --color-t-bright: #1c1c1e;
+  --color-t-muted: #a5a8b5;
+
+  /* Blue 450 primary, coral as the friendly counterpoint */
+  --color-t-accent: #5b76fe;
+  --color-t-accent-alt: #ffc6c6;  /* coral pastel */
+  --color-t-accent-glow: rgba(91, 118, 254, 0.14);
+  --color-t-accent-alt-glow: rgba(255, 198, 198, 0.30);
+
+  --color-t-info: #5b76fe;
+  --color-t-success: #00b473;
+  --color-t-warning: #ffe6cd;     /* orange pastel */
+  --color-t-error: #fbd4d4;       /* red pastel */
+
+  --color-t-border: #e0e2e8;
+  --color-t-border-active: #5b76fe;
+
+  /* Roobert PRO Medium is proprietary; Inter is the closest open match. */
+  --font-primary: 'Noto Sans', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Roobert PRO Medium', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-feature-settings: "ss01", "ss04", "ss05";
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: var(--color-t-bright); }
+h2 { font-weight: 500; letter-spacing: -0.018em; color: var(--color-t-bright); }
+
+/* Cards: ring-shadow border, generous 16px rounding */
+.t-card {
+  background: var(--color-t-card);
+  border: 0;
+  border-radius: 16px;
+  box-shadow: rgb(224, 226, 232) 0 0 0 1px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.t-card:hover {
+  box-shadow:
+    var(--color-t-accent) 0 0 0 1px,
+    0 12px 28px rgba(91, 118, 254, 0.10);
+  transform: translateY(-2px);
+}
+
+.t-glow { box-shadow: 0 0 0 3px var(--color-t-accent-glow); }
+
+/* Pastel collaboration palette tints — the cheerful brand voice */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255, 198, 198, 0.30) 0%, transparent 18%),
+    radial-gradient(circle at 78% 28%, rgba(195, 250, 245, 0.30) 0%, transparent 18%),
+    radial-gradient(circle at 38% 80%, rgba(255, 230, 205, 0.30) 0%, transparent 18%),
+    radial-gradient(circle at 88% 78%, rgba(253, 224, 240, 0.30) 0%, transparent 18%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(0, 180, 115, 0.40); animation: status-blink 1.6s ease-in-out infinite; }
+.status-dot.idle { background: #d9a23a; }
+.status-dot.error { background: #c41c1c; }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #c7cad5; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

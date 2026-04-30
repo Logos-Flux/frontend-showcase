@@ -1,0 +1,104 @@
+/* ============================================
+   Mistral AI Theme — Sun-Drenched Frontier
+   A warm, golden-amber color universe — backgrounds fade from pale
+   cream (#fffaeb) to deep amber. Mistral Orange (#fa520f) burns
+   through the page like a signal fire. Massive display headlines with
+   aggressive negative tracking. Near-zero border-radius — sharp,
+   architectural geometry. Shadows carry golden undertones.
+   Inspired by mistral.ai — see public/design-md/mistral.ai.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #fffaeb;        /* warm ivory */
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #fff0c2;       /* cream */
+
+  --color-t-text: #1f1f1f;        /* mistral black — warmer than #000 */
+  --color-t-bright: #1f1f1f;
+  --color-t-muted: #555555;
+
+  /* Mistral Orange + Sunshine 700 amber — the gradient heart */
+  --color-t-accent: #fa520f;
+  --color-t-accent-alt: #ffa110;  /* sunshine 700 */
+  --color-t-accent-glow: rgba(250, 82, 15, 0.16);
+  --color-t-accent-alt-glow: rgba(255, 161, 16, 0.18);
+
+  --color-t-info: #4C98B9;
+  --color-t-success: #03904A;
+  --color-t-warning: #ffa110;
+  --color-t-error: #c41c1c;
+
+  --color-t-border: rgba(31, 31, 31, 0.10);
+  --color-t-border-active: #fa520f;
+
+  --font-primary: 'Inter Variable', Inter, Arial, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Inter Variable', Inter, Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); text-transform: uppercase; letter-spacing: 0.08em; }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display: massive scale + extreme tracking — the billboard voice */
+h1, .font-display { font-weight: 700; letter-spacing: -0.04em; line-height: 1.0; }
+h2 { font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; }
+
+/* Cards: white, sharp 2px corners, golden shadow tints */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 2px;
+  box-shadow: rgba(127, 99, 21, 0.06) 0 1px 2px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  /* Warm amber-tinted shadow — the Mistral signature */
+  box-shadow: 0 8px 24px rgba(127, 99, 21, 0.16);
+}
+
+.t-glow {
+  box-shadow:
+    0 0 0 2px var(--color-t-accent),
+    0 0 24px var(--color-t-accent-glow);
+}
+
+/* The Mistral block gradient — yellow → amber → orange — as a page wash */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 217, 0, 0.10) 0%, transparent 35%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 161, 16, 0.08) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 100%, rgba(250, 82, 15, 0.08) 0%, transparent 40%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-accent); box-shadow: 0 0 8px var(--color-t-accent-glow); animation: status-blink 1.4s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: rgba(127, 99, 21, 0.20); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

@@ -1,0 +1,94 @@
+/* ============================================
+   Uber Theme — Confident Minimalism
+   Pure black-and-white duality with virtually no mid-tone grays.
+   UberMove proprietary geometric sans (Inter substitute) — square,
+   engineered, transit-map clarity. Pill-shaped everything (999px):
+   buttons, chips, nav items. Whisper-soft shadows (0.12-0.16
+   opacity) without breaking the flat aesthetic.
+   Inspired by uber.com — see public/design-md/uber.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #ffffff;
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #efefef;       /* chip gray */
+
+  --color-t-text: #4b4b4b;        /* body gray */
+  --color-t-bright: #000000;      /* uber black — uncompromising */
+  --color-t-muted: #afafaf;
+
+  /* Black is the brand — no chromatic accent */
+  --color-t-accent: #000000;
+  --color-t-accent-alt: #4b4b4b;
+  --color-t-accent-glow: rgba(0, 0, 0, 0.12);
+  --color-t-accent-alt-glow: rgba(0, 0, 0, 0.08);
+
+  --color-t-info: #0000ee;        /* default browser link blue */
+  --color-t-success: #008a05;
+  --color-t-warning: #c08532;
+  --color-t-error: #c41c1c;
+
+  --color-t-border: #e2e2e2;
+  --color-t-border-active: #000000;
+
+  /* UberMove is proprietary; Inter is the closest open match. */
+  --font-primary: 'UberMoveText', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'UberMove', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; color: var(--color-t-bright); }
+h2 { font-weight: 700; letter-spacing: -0.015em; color: var(--color-t-bright); }
+
+/* Cards: white, 12px rounding, whisper soft shadow */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 2px 8px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-bright);
+  box-shadow: rgba(0, 0, 0, 0.16) 0 8px 24px;
+}
+
+.t-glow { box-shadow: 0 0 0 3px var(--color-t-accent-glow); }
+
+/* No pattern — Uber's flat-aesthetic discipline */
+.t-bg-pattern { background-image: none; }
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-bright); animation: status-blink 1.5s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-muted); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-t-border); border-radius: 9999px; }     /* pills everywhere */
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

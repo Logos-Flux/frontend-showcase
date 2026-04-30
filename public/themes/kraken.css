@@ -1,0 +1,93 @@
+/* ============================================
+   Kraken Theme — Trustworthy Crypto Purple
+   White canvas with Kraken Purple (#7132f5) commanding the brand
+   identity. Near-black ink and cool blue-gray neutral scale.
+   12px radius buttons (rounded but not pill). Whisper-level shadows.
+   Inspired by kraken.com — see public/design-md/kraken.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #f7f7fa;
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #f0f0f5;
+
+  --color-t-text: #686b82;        /* cool gray */
+  --color-t-bright: #101114;
+  --color-t-muted: #9497a9;       /* silver blue */
+
+  --color-t-accent: #7132f5;
+  --color-t-accent-alt: #149e61;  /* the success green doubles as the warm counterpoint */
+  --color-t-accent-glow: rgba(133, 91, 251, 0.16);
+  --color-t-accent-alt-glow: rgba(20, 158, 97, 0.14);
+
+  --color-t-info: #7132f5;
+  --color-t-success: #149e61;
+  --color-t-warning: #d4a017;
+  --color-t-error: #c41c1c;
+
+  --color-t-border: #dedee5;
+  --color-t-border-active: #7132f5;
+
+  /* Kraken-Brand / Kraken-Product are proprietary; IBM Plex Sans is the
+     stated fallback and is bundled. */
+  --font-primary: 'Kraken-Product', 'IBM Plex Sans', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Kraken-Brand', 'IBM Plex Sans', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 700; letter-spacing: -0.02em; line-height: 1.17; color: var(--color-t-bright); }
+h2 { font-weight: 700; letter-spacing: -0.015em; }
+
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.03) 0 4px 24px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  box-shadow: 0 8px 28px rgba(113, 50, 245, 0.10);
+  transform: translateY(-1px);
+}
+
+.t-glow { box-shadow: 0 0 0 4px var(--color-t-accent-glow); }
+
+.t-bg-pattern {
+  background-image: radial-gradient(ellipse at 30% 0%, rgba(113, 50, 245, 0.05) 0%, transparent 50%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(20, 158, 97, 0.40); animation: status-blink 1.6s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: rgba(104, 107, 130, 0.30); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

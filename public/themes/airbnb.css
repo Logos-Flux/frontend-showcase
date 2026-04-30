@@ -1,0 +1,158 @@
+/* ============================================
+   Airbnb Theme — Marketplace Generosity
+   Pure white canvas, single voltage of Rausch pink (#ff385c),
+   warm near-black ink, modest weights, soft 14px card rounding.
+   Inspired by airbnb.com — see public/design-md/airbnb.md
+   ============================================ */
+
+:root {
+  /* Backgrounds — white canvas, light surface stops */
+  --color-t-deep: #f7f7f7;       /* surface-soft — page floor */
+  --color-t-surface: #ffffff;    /* canvas — main wrapper */
+  --color-t-card: #ffffff;       /* canvas — cards float on the deep tone */
+  --color-t-hover: #f2f2f2;      /* surface-strong — hover backgrounds */
+
+  /* Text — warm near-black ink */
+  --color-t-text: #3f3f3f;       /* body */
+  --color-t-bright: #222222;     /* ink — never pure black */
+  --color-t-muted: #6a6a6a;      /* muted */
+
+  /* Accents — single voltage Rausch + a quiet legal blue */
+  --color-t-accent: #ff385c;          /* Rausch */
+  --color-t-accent-alt: #428bff;      /* legal-link blue, used sparingly */
+  --color-t-accent-glow: rgba(255, 56, 92, 0.12);
+  --color-t-accent-alt-glow: rgba(66, 139, 255, 0.10);
+
+  /* Semantic */
+  --color-t-info: #428bff;
+  --color-t-success: #008a05;
+  --color-t-warning: #c48a3a;
+  --color-t-error: #c13515;      /* primary-error-text */
+
+  /* Borders — hairline tones */
+  --color-t-border: #dddddd;     /* hairline */
+  --color-t-border-active: #222222; /* ink — Airbnb's input focus flips border to ink, not brand color */
+
+  /* Font families
+     Airbnb ships Cereal VF (proprietary) with Circular as historic fallback.
+     Inter is the closest open-licensed substitute; we serve it via @fontsource. */
+  --font-primary: 'Airbnb Cereal VF', Circular, 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Airbnb Cereal VF', Circular, 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal {
+  font-family: var(--font-terminal);
+}
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;        /* Airbnb leans on 16px body — not 15 */
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Card: white on cream, soft 14px rounding --- */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 14px;        /* property-card radius */
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.t-card:hover {
+  /* Airbnb's signature one-shadow tier: 1px ring + soft drop + harder lift */
+  border-color: transparent;
+  box-shadow:
+    rgba(0, 0, 0, 0.02) 0 0 0 1px,
+    rgba(0, 0, 0, 0.04) 0 2px 6px 0,
+    rgba(0, 0, 0, 0.10) 0 4px 8px 0;
+}
+
+/* --- Glow: a soft Rausch bloom (rare on Airbnb itself; reserved for focus) --- */
+.t-glow {
+  box-shadow: 0 0 0 4px var(--color-t-accent-glow);
+}
+
+/* --- Background pattern: extremely subtle Rausch wash + cool counterpoint
+     Airbnb's actual pages are photography-led with no pattern at all —
+     this provides a barely-perceptible wash so empty surfaces don't feel flat. */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(circle at 18% 22%, rgba(255, 56, 92, 0.030) 0%, transparent 45%),
+    radial-gradient(circle at 82% 78%, rgba(66, 139, 255, 0.025) 0%, transparent 45%);
+  background-size: 100% 100%;
+}
+
+/* --- Skeleton Shimmer --- */
+.t-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-t-hover) 0%,
+    var(--color-t-card) 40%,
+    var(--color-t-hover) 80%
+  );
+  background-size: 200% 100%;
+  animation: t-shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes t-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- Status dots --- */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.live {
+  background: var(--color-t-accent);   /* Rausch carries live state — same as save-state heart */
+  box-shadow: 0 0 6px var(--color-t-accent-glow);
+  animation: status-blink 1.6s ease-in-out infinite;
+}
+
+.status-dot.idle {
+  background: var(--color-t-warning);
+}
+
+.status-dot.error {
+  background: var(--color-t-error);
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.55; }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-t-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;        /* border-strong */
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-t-bright);
+}

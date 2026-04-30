@@ -1,0 +1,104 @@
+/* ============================================
+   Resend Theme — Cinematic Email Stage
+   Pure black void canvas with text glowing in near-white (#f0f0f0).
+   Three-font hierarchy: Domaine Display (serif hero — Fraunces sub),
+   ABC Favorit (geometric sections — Inter sub), Inter (body). The
+   defining detail is the icy blue-tinted border rgba(214, 235, 253,
+   0.19) — every divider has a cold, crystalline shimmer.
+   Inspired by resend.com — see public/design-md/resend.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #000000;
+  --color-t-surface: #0a0a0a;
+  --color-t-card: #0a0a0a;
+  --color-t-hover: #161616;
+
+  --color-t-text: #a1a4a5;        /* silver */
+  --color-t-bright: #f0f0f0;      /* near white */
+  --color-t-muted: #5c5c5c;
+
+  --color-t-accent: #ff801f;      /* orange 10 — primary signal */
+  --color-t-accent-alt: #11ff99;  /* green 4 */
+  --color-t-accent-glow: rgba(255, 128, 31, 0.18);
+  --color-t-accent-alt-glow: rgba(17, 255, 153, 0.16);
+
+  --color-t-info: #3b9eff;
+  --color-t-success: #11ff99;
+  --color-t-warning: #ffc53d;
+  --color-t-error: #ff2047;
+
+  /* Icy blue-tinted border — Resend's defining visual signature */
+  --color-t-border: rgba(214, 235, 253, 0.19);
+  --color-t-border-active: rgba(214, 235, 253, 0.55);
+
+  /* Domaine Display + ABC Favorit are proprietary; Fraunces and Inter substitute. */
+  --font-primary: 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Domaine Display', 'Fraunces Variable', Fraunces, ui-serif, Georgia, serif;
+  --font-mono: 'Commit Mono', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'Commit Mono', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-feature-settings: "ss01", "ss03", "ss04", "ss11";
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Editorial serif headlines — Resend's magazine-cover move */
+h1, .font-display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; line-height: 1.0; color: var(--color-t-bright); }
+h2 { font-weight: 600; letter-spacing: -0.04em; line-height: 1.05; color: var(--color-t-bright); }
+
+/* Cards: black, icy blue-tinted hairline, multi-layer ring shadow */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 12px;
+  box-shadow: rgba(176, 199, 217, 0.145) 0 0 0 1px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-border-active);
+  box-shadow: rgba(176, 199, 217, 0.30) 0 0 0 1px, 0 0 28px rgba(214, 235, 253, 0.06);
+}
+
+.t-glow {
+  box-shadow:
+    0 0 0 1px var(--color-t-border-active),
+    0 0 24px rgba(255, 128, 31, 0.16);
+}
+
+/* Diffuse multi-color accent wash at very low opacity */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 12% 0%, rgba(255, 128, 31, 0.06) 0%, transparent 35%),
+    radial-gradient(ellipse at 90% 100%, rgba(17, 255, 153, 0.04) 0%, transparent 35%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 8px var(--color-t-accent-alt-glow); animation: status-blink 1.5s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: rgba(214, 235, 253, 0.12); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

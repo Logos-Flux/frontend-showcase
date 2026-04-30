@@ -1,0 +1,95 @@
+/* ============================================
+   xAI Theme — Brutalist Monospace Infrastructure
+   Almost-black canvas (#1f2228) with pure white text — no gray
+   middle ground. GeistMono carries display at extreme sizes
+   (320px weight 300) — monospace as luxury. Universal Sans (Inter
+   substitute) for body. Zero decorative elements: no shadows, no
+   gradients, no chromatic accents. White at varying opacities is
+   the entire palette.
+   Inspired by x.ai — see public/design-md/x.ai.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #1f2228;
+  --color-t-surface: #1f2228;
+  --color-t-card: rgba(255, 255, 255, 0.05);    /* surface elevated */
+  --color-t-hover: rgba(255, 255, 255, 0.08);
+
+  --color-t-text: rgba(255, 255, 255, 0.70);
+  --color-t-bright: #ffffff;
+  --color-t-muted: rgba(255, 255, 255, 0.50);
+
+  /* No chromatic color — white at opacities IS the brand */
+  --color-t-accent: #ffffff;
+  --color-t-accent-alt: rgba(255, 255, 255, 0.50);
+  --color-t-accent-glow: rgba(255, 255, 255, 0.10);
+  --color-t-accent-alt-glow: rgba(255, 255, 255, 0.05);
+
+  --color-t-info: #ffffff;
+  --color-t-success: #ffffff;
+  --color-t-warning: #ffffff;
+  --color-t-error: #ff5454;
+
+  --color-t-border: rgba(255, 255, 255, 0.10);
+  --color-t-border-active: rgba(255, 255, 255, 0.20);
+
+  /* GeistMono is bundled directly. Universal Sans substitutes via Inter. */
+  --font-primary: 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Geist Mono Variable', 'Geist Mono', ui-monospace, 'SF Mono', 'Roboto Mono', Menlo, Monaco, Consolas, monospace;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-terminal: 'Geist Mono Variable', 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); text-transform: uppercase; letter-spacing: 0.09em; }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display: GeistMono weight 300 — monospace as luxury */
+h1, .font-display { font-family: var(--font-display); font-weight: 300; line-height: 1.0; letter-spacing: -0.02em; color: var(--color-t-bright); }
+h2 { font-weight: 500; line-height: 1.2; color: var(--color-t-bright); }
+
+/* Cards: minimal radius (2px) — sharp architectural edges */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 2px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.t-card:hover {
+  background: var(--color-t-hover);
+  border-color: var(--color-t-border-active);
+}
+
+.t-glow { box-shadow: 0 0 0 1px var(--color-t-bright); }
+
+/* No pattern — depth via contrast and whitespace alone */
+.t-bg-pattern { background-image: none; }
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 0; display: inline-block; }    /* square dots */
+.status-dot.live { background: var(--color-t-bright); animation: status-blink 1.5s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-muted); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.10); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

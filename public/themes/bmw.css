@@ -1,0 +1,167 @@
+/* ============================================
+   BMW Theme — Corporate Measured
+   Cream-tinted white canvas with BMW Corporate Blue (#1c69d4)
+   carrying every primary CTA. Two-weight type hierarchy: heavy 700
+   display + Light 300 body. M Red (#e22718) lives only on M-line
+   moments; corporate blue does the rest. Sharp 0px card corners
+   reinforce the engineered feel.
+   Inspired by bmw.com — see public/design-md/bmw.md
+   ============================================ */
+
+:root {
+  /* Backgrounds — cream-tinted white, light step-ups */
+  --color-t-deep: #f7f7f7;       /* surface-soft — page floor */
+  --color-t-surface: #ffffff;    /* canvas */
+  --color-t-card: #fafafa;       /* surface-card — cards sit barely above the surface */
+  --color-t-hover: #ebebeb;      /* surface-strong */
+
+  /* Text — graphite ink */
+  --color-t-text: #3c3c3c;       /* body */
+  --color-t-bright: #1a1a1a;     /* body-strong */
+  --color-t-muted: #6b6b6b;      /* muted */
+
+  /* Accents — corporate blue + M red as the secondary high-voltage */
+  --color-t-accent: #1c69d4;          /* corporate primary */
+  --color-t-accent-alt: #e22718;      /* M red — used scarcely */
+  --color-t-accent-glow: rgba(28, 105, 212, 0.10);
+  --color-t-accent-alt-glow: rgba(226, 39, 24, 0.10);
+
+  /* Semantic */
+  --color-t-info: #1c69d4;
+  --color-t-success: #22c55e;
+  --color-t-warning: #f59e0b;
+  --color-t-error: #dc2626;
+
+  /* Borders */
+  --color-t-border: #e6e6e6;     /* hairline */
+  --color-t-border-active: #1c69d4;
+
+  /* Font families
+     BMW ships BMW Type Next Latin (proprietary). Inter is the closest
+     open-licensed substitute — both are geometric sans with a measured,
+     industrial cut. Both 300 and 700 are needed for the system. */
+  --font-primary: 'BMW Type Next Latin', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'BMW Type Next Latin', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal {
+  font-family: var(--font-terminal);
+}
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 300;       /* BMW body runs Light 300 — set globally so body inherits */
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Display elements should override to weight 700 */
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-weight: 700;
+}
+
+/* --- Card: sharp 0px corners, hairline border, surface-card fill --- */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 0;        /* BMW configurator cards are square — engineered, not friendly */
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  box-shadow: 0 6px 24px rgba(28, 105, 212, 0.08);
+}
+
+/* --- Glow: corporate-blue ring on focus --- */
+.t-glow {
+  box-shadow: 0 0 0 3px var(--color-t-accent-glow);
+}
+
+/* --- Background pattern: a single quiet horizontal hairline rule
+     evocative of BMW's section dividers between configuration steps. */
+.t-bg-pattern {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(100% - 1px),
+    rgba(28, 105, 212, 0.04) calc(100% - 1px),
+    rgba(28, 105, 212, 0.04) 100%
+  );
+  background-size: 100% 96px;
+}
+
+/* --- Skeleton Shimmer --- */
+.t-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-t-hover) 0%,
+    var(--color-t-card) 40%,
+    var(--color-t-hover) 80%
+  );
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes t-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- Status dots --- */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.live {
+  background: var(--color-t-success);
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.35);
+  animation: status-blink 1.6s ease-in-out infinite;
+}
+
+.status-dot.idle {
+  background: var(--color-t-warning);
+}
+
+.status-dot.error {
+  background: var(--color-t-error);
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-t-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cccccc;       /* hairline-strong */
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-t-accent);
+}

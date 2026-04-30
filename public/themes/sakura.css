@@ -1,0 +1,154 @@
+/* ============================================
+   Sakura Theme — Light Editorial
+   Warm paper whites, muted coral + plum accents,
+   generous serif display, soft rounded cards.
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* Backgrounds */
+  --color-t-deep: #f6f1ea;
+  --color-t-surface: #fbf7f1;
+  --color-t-card: #ffffff;
+  --color-t-hover: #f0e9df;
+
+  /* Text */
+  --color-t-text: #4a3f3a;
+  --color-t-bright: #1a1512;
+  --color-t-muted: #8a7f77;
+
+  /* Accents */
+  --color-t-accent: #d4556b;
+  --color-t-accent-alt: #6b7a9b;
+  --color-t-accent-glow: rgba(212, 85, 107, 0.10);
+  --color-t-accent-alt-glow: rgba(107, 122, 155, 0.10);
+
+  /* Semantic */
+  --color-t-info: #4a7fa8;
+  --color-t-success: #5a8055;
+  --color-t-warning: #c48a3a;
+  --color-t-error: #b54a4a;
+
+  /* Borders */
+  --color-t-border: rgba(26, 21, 18, 0.10);
+  --color-t-border-active: rgba(212, 85, 107, 0.45);
+
+  /* Font families */
+  --font-primary: 'Inter', system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-terminal: 'JetBrains Mono', monospace;
+}
+
+.font-terminal {
+  font-family: var(--font-terminal);
+}
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Card: soft, rounded, paper shadow --- */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(26, 21, 18, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.t-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-t-border-active);
+  box-shadow: 0 6px 20px rgba(26, 21, 18, 0.08);
+}
+
+/* --- Glow: soft paper bloom --- */
+.t-glow {
+  box-shadow: 0 0 24px var(--color-t-accent-glow);
+}
+
+/* --- Paper-fibre background --- */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(212, 85, 107, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(107, 122, 155, 0.04) 0%, transparent 40%);
+  background-size: 100% 100%;
+}
+
+/* --- Skeleton Shimmer --- */
+.t-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-t-hover) 0%,
+    var(--color-t-card) 40%,
+    var(--color-t-hover) 80%
+  );
+  background-size: 200% 100%;
+  animation: t-shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes t-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- Status dots --- */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.live {
+  background: var(--color-t-success);
+  box-shadow: 0 0 6px rgba(90, 128, 85, 0.5);
+  animation: status-blink 1.8s ease-in-out infinite;
+}
+
+.status-dot.idle {
+  background: var(--color-t-warning);
+}
+
+.status-dot.error {
+  background: var(--color-t-error);
+  box-shadow: 0 0 6px rgba(181, 74, 74, 0.4);
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-t-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(26, 21, 18, 0.15);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(26, 21, 18, 0.3);
+}

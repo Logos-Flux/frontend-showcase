@@ -1,0 +1,96 @@
+/* ============================================
+   Replicate Theme — Festival Poster Energy
+   White canvas with massive display typography (rb-freigeist-neue at
+   128px) and Replicate Red (#ea2804) anchoring an explosive orange-
+   red-magenta hero gradient. EVERY interactive element uses a 9999px
+   pill radius — buttons, tags, cards. High-contrast, playful, loud.
+   Inspired by replicate.com — see public/design-md/replicate.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #ffffff;
+  --color-t-surface: #fcfcfc;
+  --color-t-card: #ffffff;
+  --color-t-hover: #f5f5f5;
+
+  --color-t-text: #4e4e4e;
+  --color-t-bright: #202020;      /* warm near-black */
+  --color-t-muted: #8d8d8d;
+
+  --color-t-accent: #ea2804;      /* replicate red */
+  --color-t-accent-alt: #2b9a66;  /* status green */
+  --color-t-accent-glow: rgba(234, 40, 4, 0.16);
+  --color-t-accent-alt-glow: rgba(43, 154, 102, 0.14);
+
+  --color-t-info: #dd4425;
+  --color-t-success: #2b9a66;
+  --color-t-warning: #f59e0b;
+  --color-t-error: #ea2804;
+
+  --color-t-border: #bbbbbb;
+  --color-t-border-active: #ea2804;
+
+  --font-primary: 'basier-square', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'rb-freigeist-neue', 'basier-square', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 700; line-height: 1.0; letter-spacing: -0.03em; color: var(--color-t-bright); }
+h2 { font-weight: 700; line-height: 1.1; color: var(--color-t-bright); }
+
+/* Cards: pill rounding — Replicate's commitment to 9999px on EVERYTHING */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 24px;        /* large rounded — between 9999 (buttons) and zero */
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  box-shadow: 0 12px 32px rgba(234, 40, 4, 0.12);
+  transform: translateY(-2px);
+}
+
+.t-glow { box-shadow: 0 0 0 4px var(--color-t-accent-glow); }
+
+/* The hero blaze gradient — orange → red → magenta → pink — at low intensity */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 15% 5%, rgba(234, 40, 4, 0.08) 0%, transparent 35%),
+    radial-gradient(ellipse at 50% 0%, rgba(255, 30, 100, 0.06) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 12%, rgba(255, 80, 200, 0.06) 0%, transparent 35%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-accent-alt); box-shadow: 0 0 6px rgba(43, 154, 102, 0.40); animation: status-blink 1.4s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-accent); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #d4d4d4; border-radius: 9999px; }      /* pills everywhere */
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

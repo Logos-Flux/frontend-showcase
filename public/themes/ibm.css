@@ -1,0 +1,101 @@
+/* ============================================
+   IBM Theme — Carbon Engineering Specification
+   White canvas with near-black (#161616) text, single IBM Blue 60
+   (#0f62fe) accent. IBM Plex Sans Light 300 for display creates
+   corporate gravitas through typographic restraint. 0px border-radius
+   on primary chrome — unapologetically rectangular. Flat borderless
+   cards on Gray 10 (#f4f4f4) — depth through background-color
+   layering, not shadows.
+   Inspired by ibm.com — see public/design-md/ibm.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #ffffff;
+  --color-t-surface: #ffffff;
+  --color-t-card: #f4f4f4;        /* Gray 10 — Carbon's signature card surface */
+  --color-t-hover: #e8e8e8;
+
+  --color-t-text: #525252;        /* Gray 70 — secondary text */
+  --color-t-bright: #161616;      /* Gray 100 */
+  --color-t-muted: #6f6f6f;       /* Gray 60 */
+
+  /* IBM Blue 60 — the singular interactive color */
+  --color-t-accent: #0f62fe;
+  --color-t-accent-alt: #161616;
+  --color-t-accent-glow: rgba(15, 98, 254, 0.14);
+  --color-t-accent-alt-glow: rgba(22, 22, 22, 0.08);
+
+  --color-t-info: #0f62fe;
+  --color-t-success: #24a148;
+  --color-t-warning: #f1c21b;
+  --color-t-error: #da1e28;
+
+  --color-t-border: #c6c6c6;      /* Gray 30 */
+  --color-t-border-active: #0f62fe;
+
+  /* IBM Plex is open-licensed and bundled — use it directly. */
+  --font-primary: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 14px;                /* Carbon body sits at 14 with 0.16px tracking */
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display headings run Plex Sans Light 300 — corporate gravitas through restraint */
+h1, h2, .font-display { font-weight: 300; letter-spacing: 0; }
+
+/* Cards: flat fill, 0px corners, no border by default — Carbon's card pattern */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid transparent;
+  border-radius: 0;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  background: var(--color-t-hover);
+  border-color: var(--color-t-border);
+}
+
+/* Carbon focus ring: 2px Blue 60 with white inset — unmistakable Carbon signature */
+.t-glow { box-shadow: 0 0 0 2px var(--color-t-accent), inset 0 0 0 2px #ffffff; }
+
+/* Quiet 2x grid hint — Carbon's underlying 8px grid surfaces faintly */
+.t-bg-pattern {
+  background-image:
+    linear-gradient(rgba(22, 22, 22, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(22, 22, 22, 0.03) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 0; display: inline-block; }   /* square dots — no soft corners in Carbon */
+.status-dot.live { background: var(--color-t-success); animation: status-blink 1.8s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-t-border); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

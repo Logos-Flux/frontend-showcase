@@ -1,0 +1,94 @@
+/* ============================================
+   OpenCode Theme — Warm Terminal
+   Warm near-black (#201d1d) with a reddish-brown undertone — a
+   sophisticated terminal emulator, not a cold IDE. Berkeley Mono
+   is the SOLE typeface across the system: headings, body, buttons,
+   navigation. Apple HIG-inspired semantic colors. Minimal 4px corners.
+   Inspired by opencode.ai — see public/design-md/opencode.ai.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #201d1d;        /* warm near-black */
+  --color-t-surface: #302c2c;     /* dark surface — slightly elevated */
+  --color-t-card: #302c2c;
+  --color-t-hover: #3a3535;
+
+  --color-t-text: #fdfcfc;        /* warm off-white */
+  --color-t-bright: #fdfcfc;
+  --color-t-muted: #9a9898;       /* mid gray */
+
+  --color-t-accent: #007aff;      /* Apple system blue */
+  --color-t-accent-alt: #fdfcfc;  /* off-white as alt — terminal-like */
+  --color-t-accent-glow: rgba(0, 122, 255, 0.18);
+  --color-t-accent-alt-glow: rgba(253, 252, 252, 0.06);
+
+  --color-t-info: #007aff;
+  --color-t-success: #30d158;
+  --color-t-warning: #ff9f0a;
+  --color-t-error: #ff3b30;
+
+  --color-t-border: rgba(15, 0, 0, 0.40);    /* warm transparent — reddish hint */
+  --color-t-border-active: #007aff;
+
+  /* Berkeley Mono is the brand voice; JetBrains Mono is the closest open match. */
+  --font-primary: 'Berkeley Mono', 'JetBrains Mono Variable', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-display: 'Berkeley Mono', 'JetBrains Mono Variable', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+  --font-mono: 'Berkeley Mono', 'JetBrains Mono Variable', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+  --font-terminal: 'Berkeley Mono', 'JetBrains Mono Variable', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  font-weight: 500;        /* slightly heavier body weight enhances on-screen legibility */
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 700; line-height: 1.4; color: var(--color-t-bright); }
+h2 { font-weight: 700; line-height: 1.4; color: var(--color-t-bright); }
+
+/* Cards: warm dark, 4px sharp utilitarian corners */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 4px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: rgba(15, 0, 0, 0.65);
+  background: var(--color-t-hover);
+}
+
+.t-glow { box-shadow: 0 0 0 2px var(--color-t-accent), 0 0 18px var(--color-t-accent-glow); }
+
+/* Subtle warm wash — the reddish undertone of the substrate surfaces */
+.t-bg-pattern {
+  background-image: radial-gradient(ellipse at 30% 0%, rgba(255, 80, 80, 0.025) 0%, transparent 50%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(48, 209, 88, 0.40); animation: status-blink 1.5s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #646262; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

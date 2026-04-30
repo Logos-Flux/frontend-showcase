@@ -1,0 +1,101 @@
+/* ============================================
+   Together AI Theme — Pastel Cloud Infrastructure
+   White canvas with soft pink-blue-lavender gradient atmosphere —
+   GPU clusters and model inference made light, airy, optimistic.
+   Magenta (#ef2cc1) and orange (#fc4c02) appear sparingly in
+   illustrations only, never as UI chrome. Sharp 4–8px geometry.
+   Dark midnight blue (#010120) — not gray-black — for research mode.
+   Inspired by together.ai — see public/design-md/together.ai.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #ffffff;
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #f7f7fb;
+
+  --color-t-text: #1f1f30;
+  --color-t-bright: #010120;      /* midnight blue */
+  --color-t-muted: #7a7d90;
+
+  /* Magenta primary, orange counterpoint */
+  --color-t-accent: #ef2cc1;
+  --color-t-accent-alt: #fc4c02;
+  --color-t-accent-glow: rgba(239, 44, 193, 0.14);
+  --color-t-accent-alt-glow: rgba(252, 76, 2, 0.14);
+
+  --color-t-info: #bdbbff;        /* soft lavender */
+  --color-t-success: #16a34a;
+  --color-t-warning: #fc4c02;
+  --color-t-error: #c41c1c;
+
+  --color-t-border: rgba(0, 0, 0, 0.08);
+  --color-t-border-active: #010120;
+
+  /* "The Future" is proprietary; Inter is the closest open match. */
+  --font-primary: 'The Future', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'The Future', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'PP Neue Montreal Mono', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'PP Neue Montreal Mono', 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); text-transform: uppercase; letter-spacing: 0.08em; }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+h1, .font-display { font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; color: var(--color-t-bright); }
+h2 { font-weight: 600; letter-spacing: -0.02em; color: var(--color-t-bright); }
+
+/* Cards: sharp 8px rounding — geometric precision */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 8px;
+  /* Dark-blue-tinted shadow — Together's signature */
+  box-shadow: rgba(1, 1, 32, 0.04) 0 1px 3px, rgba(1, 1, 32, 0.06) 0 4px 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  box-shadow: rgba(1, 1, 32, 0.10) 0 12px 32px;
+  transform: translateY(-2px);
+}
+
+.t-glow { box-shadow: 0 0 0 3px var(--color-t-accent-glow); }
+
+/* Pastel cloud gradient — pink + lavender + soft blue */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 18% 18%, rgba(239, 44, 193, 0.08) 0%, transparent 35%),
+    radial-gradient(ellipse at 78% 22%, rgba(189, 187, 255, 0.20) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 100%, rgba(252, 76, 2, 0.05) 0%, transparent 40%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(22, 163, 74, 0.40); animation: status-blink 1.6s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: rgba(1, 1, 32, 0.18); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-bright); }

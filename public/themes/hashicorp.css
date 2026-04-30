@@ -1,0 +1,99 @@
+/* ============================================
+   HashiCorp Theme — Enterprise Infrastructure
+   Black on white in the parent brand, with multi-product chromatic
+   identity surfacing through accents — Terraform purple (#7b42bc)
+   carries the primary, Vault yellow (#ffcf25) is the secondary stamp.
+   Tight 2–8px radius, no pills. Micro-shadows at 0.05 opacity make
+   depth a whisper.
+   Inspired by hashicorp.com — see public/design-md/hashicorp.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #f1f2f3;        /* light gray */
+  --color-t-surface: #ffffff;
+  --color-t-card: #ffffff;
+  --color-t-hover: #e8e9eb;
+
+  --color-t-text: #3b3d45;        /* charcoal */
+  --color-t-bright: #000000;
+  --color-t-muted: #656a76;       /* dark gray */
+
+  /* Terraform purple as the primary product accent, Vault yellow as the heritage stamp */
+  --color-t-accent: #7b42bc;
+  --color-t-accent-alt: #ffcf25;
+  --color-t-accent-glow: rgba(123, 66, 188, 0.12);
+  --color-t-accent-alt-glow: rgba(255, 207, 37, 0.16);
+
+  --color-t-info: #1060ff;        /* action blue */
+  --color-t-success: #14c6cb;     /* waypoint teal — doubles as success */
+  --color-t-warning: #ffcf25;
+  --color-t-error: #ca2226;
+
+  --color-t-border: #d5d7db;      /* mid gray */
+  --color-t-border-active: #000000;
+
+  /* HashiCorp Sans is proprietary; Inter is the closest open match. */
+  --font-primary: 'HashiCorp Sans', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'HashiCorp Sans', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); text-transform: uppercase; letter-spacing: 0.08em; }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-feature-settings: "kern";
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Headings sit heavy — HashiCorp uses 600-700 with tight line-heights for enterprise authority */
+h1, h2, .font-display { font-weight: 700; line-height: 1.18; letter-spacing: -0.01em; }
+
+/* Cards: white, tight 4px rounding (no pills), micro-shadow whispers */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 4px;
+  box-shadow: rgba(97, 104, 117, 0.05) 0 1px 2px, rgba(97, 104, 117, 0.05) 0 0 0 1px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  box-shadow: 0 4px 12px rgba(123, 66, 188, 0.10);
+}
+
+.t-glow { box-shadow: 0 0 0 2px var(--color-t-accent), 0 0 16px var(--color-t-accent-glow); }
+
+/* Subtle product-color tint at the page edges — hints at the multi-product palette */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 0% 0%, rgba(123, 66, 188, 0.04) 0%, transparent 35%),
+    radial-gradient(ellipse at 100% 100%, rgba(20, 198, 203, 0.04) 0%, transparent 35%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 6px rgba(20, 198, 203, 0.40); animation: status-blink 1.6s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: #b2b6bd; border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

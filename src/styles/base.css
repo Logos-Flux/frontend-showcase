@@ -1,0 +1,113 @@
+@import "tailwindcss";
+@source "../**/*.{ts,tsx}";
+
+/*
+ * Token registration for Tailwind.
+ * These names generate utility classes like `bg-t-surface`, `text-t-bright`,
+ * etc. The *values* below are only fallbacks — each runtime theme in
+ * `public/themes/*.css` redefines them on `:root`. The active theme is loaded
+ * by the <link id="theme-css"> tag in index.html and swapped via <BrandSwitcher>.
+ */
+@theme {
+  /* Backgrounds */
+  --color-t-deep: #030c1d;
+  --color-t-surface: #0f1535;
+  --color-t-card: #1a1f3d;
+  --color-t-hover: #242a4a;
+
+  /* Text */
+  --color-t-text: #a0aec0;
+  --color-t-bright: #e0e6ed;
+  --color-t-muted: #5a6178;
+
+  /* Accents */
+  --color-t-accent: #7B2FBE;
+  --color-t-accent-alt: #01FF70;
+  --color-t-accent-glow: #7B2FBE33;
+  --color-t-accent-alt-glow: #01FF7022;
+
+  /* Semantic */
+  --color-t-info: #0075ff;
+  --color-t-success: #01b574;
+  --color-t-warning: #ffb547;
+  --color-t-error: #E31A1A;
+
+  /* Borders */
+  --color-t-border: #1e2548;
+  --color-t-border-active: #7B2FBE55;
+
+  /* Font families */
+  --font-primary: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-display: 'Departure Mono', 'JetBrains Mono', monospace;
+  --font-mono: 'IBM 3270', 'JetBrains Mono', monospace;
+  --font-terminal: 'IBM 3270', 'JetBrains Mono', monospace;
+}
+
+/* Lightweight prose styles for the rendered DESIGN.md markdown on /design-specs.
+   Theme-aware via t-* tokens, intentionally plain. */
+.design-md-prose h1,
+.design-md-prose h2,
+.design-md-prose h3,
+.design-md-prose h4 {
+  color: var(--color-t-bright);
+  font-family: var(--font-display);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.25;
+}
+.design-md-prose h1 { font-size: 1.5rem; }
+.design-md-prose h2 { font-size: 1.2rem; padding-bottom: 0.25em; border-bottom: 1px solid var(--color-t-border); }
+.design-md-prose h3 { font-size: 1rem; }
+.design-md-prose h4 { font-size: 0.9rem; }
+.design-md-prose p { margin: 0.75em 0; }
+.design-md-prose ul,
+.design-md-prose ol { margin: 0.75em 0; padding-left: 1.5rem; }
+.design-md-prose ul { list-style: disc; }
+.design-md-prose ol { list-style: decimal; }
+.design-md-prose li { margin: 0.25em 0; }
+.design-md-prose strong { color: var(--color-t-bright); font-weight: 600; }
+.design-md-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--color-t-hover);
+  color: var(--color-t-bright);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+.design-md-prose pre {
+  background: var(--color-t-deep);
+  border: 1px solid var(--color-t-border);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+.design-md-prose pre code { background: transparent; padding: 0; }
+.design-md-prose a { color: var(--color-t-accent); text-decoration: underline; }
+.design-md-prose blockquote {
+  border-left: 2px solid var(--color-t-accent);
+  padding-left: 1rem;
+  color: var(--color-t-muted);
+  margin: 1em 0;
+}
+.design-md-prose table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.85em;
+  width: 100%;
+}
+.design-md-prose th,
+.design-md-prose td {
+  border: 1px solid var(--color-t-border);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+.design-md-prose th {
+  background: var(--color-t-hover);
+  color: var(--color-t-bright);
+}
+.design-md-prose hr {
+  border: none;
+  border-top: 1px solid var(--color-t-border);
+  margin: 1.5em 0;
+}

@@ -1,0 +1,91 @@
+/* ============================================
+   NVIDIA Theme — GPU-Lime Precision
+   True black (#000000) canvas with NVIDIA Green (#76b900) deployed
+   only as borders, link underlines, and CTA outlines — never as
+   surface fills. The green is a signal, not a surface. Minimal
+   1–2px border radius — sharp, engineered corners throughout.
+   Inspired by nvidia.com — see public/design-md/nvidia.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #000000;
+  --color-t-surface: #1a1a1a;
+  --color-t-card: #1a1a1a;
+  --color-t-hover: #2a2a2a;
+
+  --color-t-text: #a7a7a7;
+  --color-t-bright: #ffffff;
+  --color-t-muted: #757575;
+
+  --color-t-accent: #76b900;      /* NVIDIA green */
+  --color-t-accent-alt: #bff230;  /* nvidia green light */
+  --color-t-accent-glow: rgba(118, 185, 0, 0.18);
+  --color-t-accent-alt-glow: rgba(191, 242, 48, 0.14);
+
+  --color-t-info: #0046a4;
+  --color-t-success: #3f8500;
+  --color-t-warning: #ef9100;
+  --color-t-error: #e52020;
+
+  --color-t-border: #5e5e5e;
+  --color-t-border-active: #76b900;
+
+  --font-primary: 'NVIDIA-EMEA', Arial, 'Inter Variable', Inter, Helvetica, ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'NVIDIA-EMEA', Arial, 'Inter Variable', Inter, Helvetica, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); text-transform: uppercase; letter-spacing: 0.06em; }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Headings dense and authoritative — 1.25 line-height carries the engineering voice */
+h1, h2, .font-display { font-weight: 700; line-height: 1.25; color: var(--color-t-bright); }
+
+/* Cards: dark surface, sharp 2px corners, GREEN border on hover (signal, not fill) */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 2px;
+  transition: border-color 0.15s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  /* The signature 2px green border — never a fill */
+  border-color: var(--color-t-accent);
+  box-shadow: 0 0 0 1px var(--color-t-accent), rgba(0, 0, 0, 0.30) 0 0 8px;
+}
+
+.t-glow { box-shadow: 0 0 0 2px var(--color-t-accent), 0 0 18px var(--color-t-accent-glow); }
+
+/* No decorative pattern — pure black is the brand */
+.t-bg-pattern { background-image: none; }
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 0; display: inline-block; }   /* square dots — engineered geometry */
+.status-dot.live { background: var(--color-t-accent); box-shadow: 0 0 6px var(--color-t-accent-glow); animation: status-blink 1.4s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-t-border); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

@@ -1,0 +1,90 @@
+/* ============================================
+   Ferrari Theme — Editorial Chiaroscuro
+   Absolute black (#000000) hero substrate alternating with crisp
+   white editorial panels. Ferrari Red (#DA291C) used with surgical
+   sparseness — only the most authoritative CTAs. 2px border radius
+   reflects precision-engineering aesthetics; uppercase labels with
+   1px letter-spacing carry editorial annotation.
+   Inspired by ferrari.com — see public/design-md/ferrari.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #000000;
+  --color-t-surface: #181818;
+  --color-t-card: #303030;        /* dark surface */
+  --color-t-hover: #3a3a3a;
+
+  --color-t-text: #d2d2d2;        /* light gray surface — body on dark */
+  --color-t-bright: #ffffff;
+  --color-t-muted: #8f8f8f;
+
+  /* Ferrari Red as the surgical accent, Modena Yellow as the heritage stamp */
+  --color-t-accent: #DA291C;
+  --color-t-accent-alt: #F6E500;  /* Modena Yellow */
+  --color-t-accent-glow: rgba(218, 41, 28, 0.18);
+  --color-t-accent-alt-glow: rgba(246, 229, 0, 0.10);
+
+  --color-t-info: #4C98B9;
+  --color-t-success: #03904A;
+  --color-t-warning: #F13A2C;     /* warning red — orange-shifted from accent */
+  --color-t-error: #DA291C;
+
+  --color-t-border: rgba(255, 255, 255, 0.12);
+  --color-t-border-active: #DA291C;
+
+  /* FerrariSans is proprietary; Inter is the closest open match for its compact medium-weight cut. */
+  --font-primary: 'FerrariSans', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'FerrariSans', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); letter-spacing: 0.06em; text-transform: uppercase; }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Cards: dark panels with 2px corners — engineering precision, not friendly */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 2px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  box-shadow: 0 0 0 1px var(--color-t-accent-glow);
+}
+
+.t-glow { box-shadow: 0 0 0 2px var(--color-t-accent), 0 0 24px var(--color-t-accent-glow); }
+
+/* No pattern — the void is the brand */
+.t-bg-pattern { background-image: none; }
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 0; display: inline-block; }   /* square dots match the precision aesthetic */
+.status-dot.live { background: var(--color-t-accent); box-shadow: 0 0 6px var(--color-t-accent-glow); animation: status-blink 1.4s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-t-border); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

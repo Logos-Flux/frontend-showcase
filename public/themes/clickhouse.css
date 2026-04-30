@@ -1,0 +1,93 @@
+/* ============================================
+   ClickHouse Theme — Yellow on Black
+   Near-pure black canvas (#0a0a0a) with electric yellow (#faff69)
+   carrying the brand voice across CTAs and stat numbers. White type
+   in confident sans, code blocks in dark cards. The yellow + black
+   pairing IS the brand — no atmospheric decoration.
+   Inspired by clickhouse.com — see public/design-md/clickhouse.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #0a0a0a;       /* canvas */
+  --color-t-surface: #121212;    /* surface-soft */
+  --color-t-card: #1a1a1a;       /* surface-card */
+  --color-t-hover: #242424;      /* surface-elevated */
+
+  --color-t-text: #cccccc;       /* body */
+  --color-t-bright: #ffffff;     /* ink */
+  --color-t-muted: #888888;
+
+  /* Electric yellow + emerald accent */
+  --color-t-accent: #faff69;
+  --color-t-accent-alt: #22c55e;      /* accent-emerald */
+  --color-t-accent-glow: rgba(250, 255, 105, 0.18);
+  --color-t-accent-alt-glow: rgba(34, 197, 94, 0.12);
+
+  --color-t-info: #3b82f6;       /* accent-blue */
+  --color-t-success: #22c55e;
+  --color-t-warning: #faff69;    /* the yellow doubles as warning */
+  --color-t-error: #ef4444;
+
+  --color-t-border: #2a2a2a;
+  --color-t-border-active: #faff69;
+
+  /* Inter handles everything — ClickHouse uses one family across the system. */
+  --font-primary: 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Cards: flat, sharp 4px rounding, no shadow at rest */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 4px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-accent);
+  box-shadow: 0 0 0 1px var(--color-t-accent), 0 8px 24px rgba(250, 255, 105, 0.06);
+}
+
+.t-glow { box-shadow: 0 0 0 1px var(--color-t-accent), 0 0 18px var(--color-t-accent-glow); }
+
+/* No decorative pattern — ClickHouse pages are flat by intent.
+   We render a single faint yellow band at 1% opacity to hint at the brand
+   voltage without breaking the discipline. */
+.t-bg-pattern {
+  background-image: linear-gradient(180deg, rgba(250, 255, 105, 0.012) 0%, transparent 60%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-accent); box-shadow: 0 0 8px var(--color-t-accent); animation: status-blink 1.2s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); opacity: 0.6; }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-t-border); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent); }

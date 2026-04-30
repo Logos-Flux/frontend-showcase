@@ -1,0 +1,103 @@
+/* ============================================
+   Sanity Theme — Nocturnal CMS Command Center
+   Near-black canvas (#0b0b0b) with pure achromatic gray ramp.
+   Sanity Red (#f36458) anchors the primary CTA; Electric Blue
+   (#0052ef) is the universal hover/active "activation" signal
+   across every interactive element. Pill primary buttons (99999px)
+   contrast with subtle 3-6px secondary rounding.
+   Inspired by sanity.io — see public/design-md/sanity.md
+   ============================================ */
+
+:root {
+  --color-t-deep: #0b0b0b;        /* sanity black */
+  --color-t-surface: #212121;
+  --color-t-card: #212121;
+  --color-t-hover: #353535;
+
+  --color-t-text: #b9b9b9;
+  --color-t-bright: #ffffff;
+  --color-t-muted: #797979;
+
+  /* Coral-red CTA + electric-blue activation */
+  --color-t-accent: #f36458;
+  --color-t-accent-alt: #0052ef;
+  --color-t-accent-glow: rgba(243, 100, 88, 0.14);
+  --color-t-accent-alt-glow: rgba(0, 82, 239, 0.18);
+
+  --color-t-info: #0052ef;
+  --color-t-success: #37cd84;     /* gpc green */
+  --color-t-warning: #f5a524;
+  --color-t-error: #dd0000;
+
+  --color-t-border: #353535;
+  --color-t-border-active: #0052ef;
+
+  /* waldenburgNormal is proprietary; Inter is the closest open match. */
+  --font-primary: 'waldenburgNormal', 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'waldenburgNormal', 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  --font-terminal: 'IBM Plex Mono', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+.font-terminal { font-family: var(--font-terminal); }
+
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+/* Display: extreme negative tracking — Sanity's machined-steel voice */
+h1, .font-display { font-weight: 600; letter-spacing: -0.04em; line-height: 1.0; color: var(--color-t-bright); }
+h2 { font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; color: var(--color-t-bright); }
+
+/* Cards: 6px subtle radius — secondary-button geometry */
+.t-card {
+  background: var(--color-t-card);
+  border: 1px solid var(--color-t-border);
+  border-radius: 6px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  /* The signature electric-blue activation signal */
+  border-color: var(--color-t-accent-alt);
+  box-shadow: 0 0 0 1px var(--color-t-accent-alt), 0 0 24px var(--color-t-accent-alt-glow);
+}
+
+.t-glow {
+  box-shadow:
+    0 0 0 2px var(--color-t-accent-alt),
+    0 0 24px var(--color-t-accent-alt-glow);
+}
+
+/* Subtle electric-blue + neon-green wash */
+.t-bg-pattern {
+  background-image:
+    radial-gradient(ellipse at 18% 0%, rgba(0, 82, 239, 0.07) 0%, transparent 40%),
+    radial-gradient(ellipse at 85% 100%, rgba(25, 214, 0, 0.04) 0%, transparent 40%);
+}
+
+.t-shimmer {
+  background: linear-gradient(90deg, var(--color-t-hover) 0%, var(--color-t-card) 40%, var(--color-t-hover) 80%);
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes t-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.status-dot.live { background: var(--color-t-success); box-shadow: 0 0 8px rgba(55, 205, 132, 0.40); animation: status-blink 1.5s ease-in-out infinite; }
+.status-dot.idle { background: var(--color-t-warning); }
+.status-dot.error { background: var(--color-t-error); }
+@keyframes status-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-t-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-t-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-t-accent-alt); }

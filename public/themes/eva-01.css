@@ -1,0 +1,173 @@
+/* ============================================
+   EVA-01 Theme — NERV Command Center
+   Dark sci-fi: purple + green accents, monospace,
+   glassmorphism cards, circuit-trace background
+   ============================================ */
+
+/* --- Fonts --- */
+@font-face {
+  font-family: 'Departure Mono';
+  src: url('/fonts/DepartureMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IBM 3270';
+  src: url('/fonts/3270-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Theme Tokens --- */
+:root {
+  /* Backgrounds */
+  --color-t-deep: #030c1d;
+  --color-t-surface: #0f1535;
+  --color-t-card: #1a1f3d;
+  --color-t-hover: #242a4a;
+
+  /* Text */
+  --color-t-text: #a0aec0;
+  --color-t-bright: #e0e6ed;
+  --color-t-muted: #5a6178;
+
+  /* Accents */
+  --color-t-accent: #7B2FBE;
+  --color-t-accent-alt: #01FF70;
+  --color-t-accent-glow: #7B2FBE33;
+  --color-t-accent-alt-glow: #01FF7022;
+
+  /* Semantic */
+  --color-t-info: #0075ff;
+  --color-t-success: #01b574;
+  --color-t-warning: #ffb547;
+  --color-t-error: #E31A1A;
+
+  /* Borders */
+  --color-t-border: #1e2548;
+  --color-t-border-active: #7B2FBE55;
+
+  /* Font families */
+  --font-primary: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-display: 'Departure Mono', 'JetBrains Mono', monospace;
+  --font-mono: 'IBM 3270', 'JetBrains Mono', monospace;
+  --font-terminal: 'IBM 3270', 'JetBrains Mono', monospace;
+}
+
+.font-terminal {
+  font-family: var(--font-terminal);
+}
+
+/* --- Base Styles --- */
+html {
+  background-color: var(--color-t-deep);
+  color: var(--color-t-text);
+  font-family: var(--font-primary);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Card Glass Effect --- */
+.t-card {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 21, 53, 0.9) 0%,
+    rgba(26, 31, 61, 0.7) 100%
+  );
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-t-border);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.t-card:hover {
+  border-color: var(--color-t-border-active);
+  box-shadow: 0 0 20px var(--color-t-accent-glow);
+}
+
+/* --- Glow Effects --- */
+.t-glow {
+  box-shadow: 0 0 15px var(--color-t-accent-glow),
+              0 0 30px rgba(123, 47, 190, 0.1);
+}
+
+/* --- Circuit Trace Background Pattern --- */
+.t-bg-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30h20m0 0v-10m0 10h10v10h10v-10m0 0h20' stroke='%231e2548' stroke-width='0.5' fill='none'/%3E%3Ccircle cx='20' cy='30' r='1.5' fill='%231e2548'/%3E%3Ccircle cx='40' cy='30' r='1.5' fill='%231e2548'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+}
+
+/* --- Status Indicators --- */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.live {
+  background: var(--color-t-accent-alt);
+  box-shadow: 0 0 6px var(--color-t-accent-alt);
+  animation: status-blink 1.5s ease-in-out infinite;
+}
+
+.status-dot.idle {
+  background: var(--color-t-warning);
+}
+
+.status-dot.error {
+  background: var(--color-t-error);
+  box-shadow: 0 0 6px var(--color-t-error);
+}
+
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* --- Skeleton Shimmer --- */
+.t-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-t-hover) 0%,
+    var(--color-t-card) 40%,
+    var(--color-t-hover) 80%
+  );
+  background-size: 200% 100%;
+  animation: t-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes t-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-t-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-t-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-t-accent);
+}
