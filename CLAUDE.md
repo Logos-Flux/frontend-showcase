@@ -1,7 +1,7 @@
-# Golden Frontend Template
+# Frontend Showcase
 
 ## What is this?
-A general-purpose website starter template with a swappable theme system and dual-navigation layout (top nav + sidebar).
+The Logos-Flux frontend showcase: a React + Tailwind 4 starter template with a runtime-swappable theme system, 67 brand-derived design systems, a 28-component theme-agnostic library, and a brand `DESIGN.md` viewer. Built to be cloned, customised, and deployed (Docker / Proxmox LXC / Fly.io — see `deploy/`).
 
 ## Tech Stack
 - **React 19** + TypeScript + Vite
@@ -65,7 +65,6 @@ Runtime-swappable. The active theme is loaded via `<link id="theme-css">` in `in
 - **Oceanic** (`oceanic.css`) — deep teal, cyan/coral accents, rounded cards, Manrope
 - **Solamp** (`solamp.css`) — light corporate, navy + amber sun accent, Inter + Manrope
 - **DHM** (`dhm.css`) — light aerial, teal + sunset amber, Plus Jakarta Sans + Playfair
-- **52 Launch** (`52l.css`) — light velocity, indigo + coral, Space Grotesk + Inter
 
 ### Design Tokens
 All themes use shared token names — any new theme must define every one:
@@ -118,10 +117,13 @@ Use it for: visual regression when editing a component, previewing a new theme, 
 - `font-display` for headings, `font-primary` for body, `font-mono` for code/terminal
 
 ## Deployment
-Static SPA — `bun run build` produces a portable `dist/`. No deploy target is wired in this template; consumers pick their own:
-- **Fly + Caddy** (preferred — see `~/projects/52L/CLAUDE.md` for the pattern)
-- **Cloudflare Pages**
-- **Netlify / Vercel**
+Static SPA. `bun run build` produces a portable `dist/`. Three first-party deploy targets are wired into the repo:
+
+- **Docker (compose)** — `docker compose -f deploy/docker-compose.yml up --build`. Builds with the root `Dockerfile` (multi-stage Bun build → Caddy 2-alpine on `:8080`).
+- **Proxmox LXC** — see `deploy/proxmox-lxc.md` for the Debian 12 LXC + Caddy + systemd recipe.
+- **Fly.io** — see `deploy/fly.md`. `fly.toml.example` is the starter config; rename to `fly.toml`, set `app = "<your-app>"`, and `flyctl deploy`.
+
+The `Caddyfile` is shared across all three targets — it serves the built `dist/` with SPA fallback + long-cache for hashed assets.
 
 ## Developer guides (MCP)
 For project-agnostic conventions (validation, error handling, security, testing), consult the developer-guides MCP: `mcp__developer-guides__list_guides` / `…__search_developer_guides`. Don't restate the guide contents in this file.

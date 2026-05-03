@@ -90,11 +90,9 @@ export function brandFontStack(brandName: string): string {
 }
 
 /**
- * Our own abstract theme design systems. Solamp, DHM, 52 Launch, and
- * Perplexity ship as themes too but live under Brands in the dropdown
- * because they're modeled on real brands — see BRAND_SPECS below. The
- * `kind` field controls the markdown path resolution; the THEME / BRAND
- * arrays only control dropdown grouping.
+ * Abstract theme design systems (not modeled on a real brand). Brand-derived
+ * themes live in BRAND_SPECS below. The `kind` field controls markdown path
+ * resolution; the THEME / BRAND arrays only control dropdown grouping.
  */
 export const THEME_SPECS: DesignSpec[] = [
   { slug: 'eva-01',   label: 'EVA-01',   kind: 'theme' },
@@ -106,7 +104,6 @@ export const THEME_SPECS: DesignSpec[] = [
 ]
 
 export const BRAND_SPECS: DesignSpec[] = [
-  { slug: '52l', label: '52 Launch', kind: 'theme' },
   { slug: 'airbnb', label: 'Airbnb', kind: 'brand' },
   { slug: 'airtable', label: 'Airtable', kind: 'brand' },
   { slug: 'apple', label: 'Apple', kind: 'brand' },

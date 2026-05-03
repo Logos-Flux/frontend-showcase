@@ -1,0 +1,18 @@
+# Caddy serves the built SPA. No backend API is required for this app
+# (themes + design specs ship as static assets), but the /api/* shape is
+# kept reserved so a future API can drop in without changes here.
+:8080 {
+	encode gzip
+
+	# Static assets + SPA fallback.
+	handle {
+		root * /srv
+		try_files {path} /index.html
+		file_server
+
+		# Long-cache hashed assets, no-cache the index.
+		@hashed path_regexp \.(js|css|png|jpg|jpeg|svg|webp|woff2|woff|ico|md)$
+		header @hashed Cache-Control "public, max-age=31536000, immutable"
+		header /index.html Cache-Control "no-cache"
+	}
+}

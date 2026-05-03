@@ -13,7 +13,6 @@ export const THEMES: ThemeDef[] = [
   { id: 'oceanic', name: 'Oceanic', description: 'Deep teal, cyan + coral' },
   { id: 'solamp', name: 'Solamp', description: 'Light corporate, navy + amber' },
   { id: 'dhm', name: 'DHM', description: 'Aerial editorial, teal + sunset' },
-  { id: '52l', name: '52 Launch', description: 'Launch velocity, indigo + coral' },
   { id: 'perplexity', name: 'Perplexity', description: 'Calm research console, teal on near-black' },
   { id: 'airbnb', name: 'Airbnb', description: 'White canvas, single Rausch pink, photo-led' },
   { id: 'airtable', name: 'Airtable', description: 'White canvas, near-black ink, signature-color stripes' },

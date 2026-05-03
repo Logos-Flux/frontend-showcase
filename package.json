@@ -1,9 +1,14 @@
 {
-  "name": "golden-frontend-template",
+  "name": "frontend-showcase",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Logos-Flux/frontend-showcase.git"
+  },
+  "homepage": "https://github.com/Logos-Flux/frontend-showcase",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
